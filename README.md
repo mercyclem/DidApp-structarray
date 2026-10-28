@@ -1,0 +1,1 @@
+# DidApp-structarray
