@@ -65,7 +65,7 @@
                     <i class="fa-solid fa-calculator mr-2"></i>3. Simulazione CalcMedia()
                 </button>
                 <button onclick="switchTab('esito')" id="tab-esito" class="tab-btn py-4 px-4 text-sm font-medium text-slate-400 hover:text-white transition-all duration-200 whitespace-nowrap">
-                    <i class="fa-solid fa-graduation-cap mr-2"></i>4. Funzione CalcolaEsito()
+                    <i class="fa-solid fa-graduation-cap mr-2"></i>4. Guida Passo Passo: CalcolaEsito()
                 </button>
             </nav>
         </div>
@@ -109,9 +109,9 @@
                             Più vettori all'interno della stessa struct di pari dimensione massima. L'elemento in posizione <code class="text-amber-300">i</code> del primo vettore si riferisce all'elemento in posizione <code class="text-amber-300">i</code> degli altri vettori.
                         </p>
                         <ul class="list-disc list-inside text-xs text-slate-400 space-y-1">
-                            <li><code class="text-pink-300">NP[i]</code>: Nome del prodotto $i$-esimo</li>
-                            <li><code class="text-pink-300">PP[i]</code>: Prezzo unitario del prodotto $i$-esimo</li>
-                            <li><code class="text-pink-300">QP[i]</code>: Quantità acquistata del prodotto $i$-esimo</li>
+                            <li><code class="text-pink-300">NP[i]</code>: Nome del prodotto i-esimo</li>
+                            <li><code class="text-pink-300">PP[i]</code>: Prezzo unitario del prodotto i-esimo</li>
+                            <li><code class="text-pink-300">QP[i]</code>: Quantità acquistata del prodotto i-esimo</li>
                             <li><code class="text-amber-300">np</code>: Numero di prodotti correnti nella fattura</li>
                         </ul>
                     </div>
@@ -139,10 +139,9 @@ struct T_ALUNNO {
                         <div class="mt-4 bg-slate-900 p-3 rounded text-xs text-slate-400">
                             <strong class="text-slate-200">Spiegazione Campi:</strong>
                             <ul class="mt-1 list-disc list-inside space-y-1">
-                                stroke-dasharray
                                 <li><code class="text-cyan-400">cod</code>, <code class="text-cyan-400">Cogn</code>, <code class="text-cyan-400">Nome</code>: Campi singoli anagrafici.</li>
                                 <li><code class="text-cyan-400">voti</code>: Array di interi dimensionato a <code class="text-amber-400">NMAX</code> (20).</li>
-                                <li><code class="text-cyan-400">nv</code>: Intero che indica quanti elementi del vettore <code class="text-cyan-400">voti</code> sono validi ($0 \le nv \le NMAX$).</li>
+                                <li><code class="text-cyan-400">nv</code>: Intero che indica quanti elementi del vettore <code class="text-cyan-400">voti</code> sono validi (da 0 a NMAX).</li>
                             </ul>
                         </div>
                     </div>
@@ -169,7 +168,7 @@ struct T_FATTURA {
                         <div class="mt-4 bg-slate-900 p-3 rounded text-xs text-slate-400">
                             <strong class="text-slate-200">Spiegazione Vettori Paralleli:</strong>
                             <p class="mt-1">
-                                Per ogni generico indice <code class="text-amber-400">i</code> (da $0$ a $np-1$), la combinazione <code class="text-purple-300">NP[i]</code>, <code class="text-purple-300">PP[i]</code> e <code class="text-purple-300">QP[i]</code> descrive completamente l'articolo $i$-esimo inserito in fattura.
+                                Per ogni generico indice <code class="text-amber-400">i</code> (da 0 a np-1), la combinazione <code class="text-purple-300">NP[i]</code>, <code class="text-purple-300">PP[i]</code> e <code class="text-purple-300">QP[i]</code> descrive completamente l'articolo i-esimo inserito in fattura.
                             </p>
                         </div>
                     </div>
@@ -355,135 +354,125 @@ struct T_FATTURA {
 
         <!-- TAB 4: FUNZIONE CALCOLAESITO() -->
         <div id="content-esito" class="hidden space-y-8">
-            <!-- Spiegazione Teorica -->
+            <!-- Header Spiegazione Problema -->
             <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
                 <h2 class="text-2xl font-bold text-blue-400 mb-2 flex items-center">
                     <i class="fa-solid fa-graduation-cap text-amber-400 mr-3"></i>
-                    Spiegazione Funzione `CalcolaEsito()`
+                    Costruzione Guidata: Funzione `CalcolaEsito()`
                 </h2>
                 <p class="text-slate-300 text-sm leading-relaxed mb-4">
-                    Dalla foto della lavagna (Foto 4), il problema richiede di determinare l'esito dello scrutinio di un alunno sulla base delle insufficienze riportate (voto &lt; 6).
+                    Dalla Foto 4 della lavagna: <i>"Dato un alunno, restituire l'esito dello scrutinio"</i>. 
+                    Impariamo a scrivere la funzione passo dopo passo, analizzando il problema e aggiungendo le relative righe di codice C++.
                 </p>
 
-                <!-- Regole di Business / Logica -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+                <!-- Regole di Business / Logica della Lavagna -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
                     <div class="bg-emerald-950/40 border border-emerald-600/40 p-4 rounded-lg">
-                        <div class="flex items-center space-x-2 text-emerald-400 font-bold text-base mb-1">
+                        <div class="flex items-center space-x-2 text-emerald-400 font-bold text-sm mb-1">
                             <i class="fa-solid fa-circle-check"></i>
                             <span>PROMOSSO</span>
                         </div>
                         <p class="text-xs text-slate-300">
-                            Se il numero di insufficienze è <strong>uguale a 0</strong>.
+                            <strong>0 insufficienze</strong> (voti &lt; 6)
                         </p>
-                        <div class="mt-2 text-xs font-mono text-emerald-300 bg-emerald-900/40 p-1.5 rounded">
-                            n_insuff == 0
-                        </div>
                     </div>
 
                     <div class="bg-red-950/40 border border-red-600/40 p-4 rounded-lg">
-                        <div class="flex items-center space-x-2 text-red-400 font-bold text-base mb-1">
+                        <div class="flex items-center space-x-2 text-red-400 font-bold text-sm mb-1">
                             <i class="fa-solid fa-circle-xmark"></i>
                             <span>NON PROMOSSO</span>
                         </div>
                         <p class="text-xs text-slate-300">
-                            Se il numero di insufficienze è <strong>maggiore di 3</strong>.
+                            <strong>Più di 3 insufficienze</strong> (&gt; 3)
                         </p>
-                        <div class="mt-2 text-xs font-mono text-red-300 bg-red-900/40 p-1.5 rounded">
-                            n_insuff &gt; 3
-                        </div>
                     </div>
 
                     <div class="bg-amber-950/40 border border-amber-600/40 p-4 rounded-lg">
-                        <div class="flex items-center space-x-2 text-amber-400 font-bold text-base mb-1">
+                        <div class="flex items-center space-x-2 text-amber-400 font-bold text-sm mb-1">
                             <i class="fa-solid fa-triangle-exclamation"></i>
                             <span>SOSPESO</span>
                         </div>
                         <p class="text-xs text-slate-300">
-                            Altrimenti (ossia per 1, 2 o 3 insufficienze).
+                            <strong>Altrimenti</strong> (1, 2 o 3 insufficienze)
                         </p>
-                        <div class="mt-2 text-xs font-mono text-amber-300 bg-amber-900/40 p-1.5 rounded">
-                            1 &le; n_insuff &le; 3
-                        </div>
                     </div>
-                </div>
-
-                <!-- Algoritmo Svolto Passo Passo -->
-                <div class="space-y-4">
-                    <h3 class="text-lg font-semibold text-slate-200">Svolgimento dell'Algoritmo Passo Passo</h3>
-                    <ol class="list-decimal list-inside space-y-3 text-sm text-slate-300">
-                        <li class="pl-2">
-                            <strong>Inizializzazione del Contatore:</strong> Dichiarare una variabile contatore (es. <code class="text-amber-300">c_ins = 0</code>) per contare i voti insufficienti.
-                        </li>
-                        <li class="pl-2">
-                            <strong>Scansione del Vettore:</strong> Scorrere tutti i voti dell'alunno da $0$ a $e.nv - 1$ mediante un ciclo <code class="text-blue-400">for</code>.
-                        </li>
-                        <li class="pl-2">
-                            <strong>Verifica Insufficienza:</strong> Ad ogni iterazione, controllare se <code class="text-cyan-300">e.voti[i] &lt; 6</code>. In caso affermativo, incrementare <code class="text-amber-300">c_ins++</code>.
-                        </li>
-                        <li class="pl-2">
-                            <strong>Valutazione finale con `if-else`:</strong> Restituire una stringa contenente l'esito finale basandosi sui valori di <code class="text-amber-300">c_ins</code>.
-                        </li>
-                    </ol>
                 </div>
             </div>
 
-            <!-- Codice Completo Svolto -->
-            <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-lg">
-                <div class="bg-slate-700 px-4 py-3 flex justify-between items-center border-b border-slate-600">
-                    <span class="font-semibold text-emerald-400 text-sm"><i class="fa-solid fa-code mr-2"></i>Codice C++ Svolto: `CalcolaEsito`</span>
-                    <span class="text-xs bg-slate-900 text-slate-300 px-2 py-0.5 rounded">Funzione C++</span>
+            <!-- PERCORSO GUIDATO PASSO PASSO -->
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg space-y-6">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-slate-700 pb-4 gap-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-100 flex items-center">
+                            <i class="fa-solid fa-list-check text-blue-400 mr-2"></i> 
+                            Sviluppo Progressivo del Codice
+                        </h3>
+                        <p class="text-xs text-slate-400">Avanza nei passi per comporre la funzione C++</p>
+                    </div>
+
+                    <!-- Indicatori di Progress -->
+                    <div class="flex items-center space-x-2">
+                        <button onclick="setEsitoStep(1)" id="step-btn-1" class="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center transition">1</button>
+                        <div class="w-4 h-0.5 bg-slate-700"></div>
+                        <button onclick="setEsitoStep(2)" id="step-btn-2" class="w-8 h-8 rounded-full bg-slate-700 text-slate-400 font-bold text-xs flex items-center justify-center transition">2</button>
+                        <div class="w-4 h-0.5 bg-slate-700"></div>
+                        <button onclick="setEsitoStep(3)" id="step-btn-3" class="w-8 h-8 rounded-full bg-slate-700 text-slate-400 font-bold text-xs flex items-center justify-center transition">3</button>
+                        <div class="w-4 h-0.5 bg-slate-700"></div>
+                        <button onclick="setEsitoStep(4)" id="step-btn-4" class="w-8 h-8 rounded-full bg-slate-700 text-slate-400 font-bold text-xs flex items-center justify-center transition">4</button>
+                    </div>
                 </div>
-                <div class="p-4">
-                    <pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;string&gt;
-using namespace std;
 
-// Funzione che restituisce l'esito dello scrutinio dell'alunno
-string CalcolaEsito(T_ALUNNO e) {
-    int i;
-    int c_ins = 0; // Contatore delle insufficienze
+                <!-- Schede dei singoli Passi -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                    <!-- Spiegazione del Passo Corrente -->
+                    <div class="lg:col-span-5 bg-slate-900 p-5 rounded-lg border border-slate-700 space-y-4">
+                        <div id="esito-step-desc">
+                            <!-- Popolato dinamicamente da JS -->
+                        </div>
 
-    // 1. Scansione del vettore voti
-    for(i = 0; i < e.nv; i++) {
-        if(e.voti[i] < 6) {
-            c_ins++;
-        }
-    }
+                        <div class="flex justify-between pt-4 border-t border-slate-800">
+                            <button onclick="prevEsitoStep()" id="btn-prev-step" class="bg-slate-700 hover:bg-slate-600 disabled:opacity-40 text-xs px-3 py-2 rounded font-semibold transition flex items-center">
+                                <i class="fa-solid fa-arrow-left mr-1"></i> Precedente
+                            </button>
+                            <button onclick="nextEsitoStep()" id="btn-next-step-esito" class="bg-blue-600 hover:bg-blue-500 text-xs px-4 py-2 rounded font-semibold transition flex items-center">
+                                Prossimo Passo <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
 
-    // 2. Valutazione dell'esito in base alla logica stabilita
-    if(c_ins == 0) {
-        return "PROMOSSO";
-    } 
-    else if(c_ins > 3) {
-        return "NON PROMOSSO";
-    } 
-    else {
-        return "SOSPESO"; // Tra 1 e 3 insufficienze inclusi
-    }
-}</code></pre>
+                    <!-- Editor Codice Progressivo -->
+                    <div class="lg:col-span-7 bg-slate-950 rounded-lg border border-slate-800 overflow-hidden shadow-inner">
+                        <div class="bg-slate-900 px-4 py-2 border-b border-slate-800 flex justify-between items-center text-xs text-slate-400">
+                            <span class="font-mono text-emerald-400"><i class="fa-solid fa-code mr-2"></i>CalcolaEsito.cpp (Anteprima Dinamica)</span>
+                            <span id="step-badge" class="bg-blue-900/60 text-blue-300 px-2 py-0.5 rounded text-[10px] font-mono">Passo 1 di 4</span>
+                        </div>
+                        <div class="p-4 text-xs font-mono">
+                            <pre><code id="esito-code-display" class="language-cpp"></code></pre>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Tester Interattivo dell'Esito -->
             <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
                 <h3 class="text-lg font-bold text-slate-200 mb-4 flex items-center">
-                    <i class="fa-solid fa-flask text-purple-400 mr-2"></i> Tester Interattivo Funzione `CalcolaEsito()`
+                    <i class="fa-solid fa-vial text-purple-400 mr-2"></i> Test della Funzione Completa
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-xs font-medium text-slate-400 mb-2">Inserisci i voti dell'alunno (separati da virgola):</label>
                         <input type="text" id="esito-test-voti" value="5, 4, 7, 3, 5" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500 mb-3">
-                        <button onclick="testCalcolaEsito()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold py-2 rounded text-sm transition">
-                            Calcola Esito Scrutinio
+                        <button onclick="testCalcolaEsito()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold py-2 rounded text-sm transition shadow">
+                            Esegui CalcolaEsito()
                         </button>
                     </div>
 
                     <div id="esito-result-box" class="bg-slate-900 p-4 rounded-lg border border-slate-700 flex flex-col justify-center items-center text-center">
-                        <span class="text-xs text-slate-400 uppercase tracking-wider mb-1">Risultato Calcolato</span>
+                        <span class="text-xs text-slate-400 uppercase tracking-wider mb-1">Risultato Restituito (`return`)</span>
                         <div id="esito-badge" class="text-xl font-bold py-1 px-4 rounded-full bg-slate-800 text-slate-400 my-2">
                             -
                         </div>
-                        <p id="esito-details" class="text-xs text-slate-400 mt-1">Inserisci i voti e premi il pulsante per testare.</p>
+                        <p id="esito-details" class="text-xs text-slate-400 mt-1">Inserisci i voti e clicca su Esegui.</p>
                     </div>
                 </div>
             </div>
@@ -498,28 +487,118 @@ string CalcolaEsito(T_ALUNNO e) {
 
     <!-- JavaScript Application Logic -->
     <script>
-        // Inizializza Syntax Highlighting al caricamento
-        document.addEventListener('DOMContentLoaded', (event) => {
-            hljs.highlightAll();
-        });
-
-        // Tab Switching Logic
+        // Tab Switching Logic (disponibile nel global scope)
         function switchTab(tabId) {
-            // Nascondi tutti i contenuti
             document.getElementById('content-teoria').classList.add('hidden');
             document.getElementById('content-riempi').classList.add('hidden');
             document.getElementById('content-media').classList.add('hidden');
             document.getElementById('content-esito').classList.add('hidden');
 
-            // Rimuovi classe active da tutti i bottoni tab
             document.getElementById('tab-teoria').classList.remove('active');
             document.getElementById('tab-riempi').classList.remove('active');
             document.getElementById('tab-media').classList.remove('active');
             document.getElementById('tab-esito').classList.remove('active');
 
-            // Mostra contenuto attivo e imposta bottone attivo
             document.getElementById('content-' + tabId).classList.remove('hidden');
             document.getElementById('tab-' + tabId).classList.add('active');
+        }
+
+        // ==========================================
+        // GUIDA PASSO PASSO: CALCOLA ESITO
+        // ==========================================
+        let currentEsitoStep = 1;
+
+        const esitoStepsData = {
+            1: {
+                title: "1. Intestazione e Inizializzazione",
+                desc: '<p class="text-slate-300 text-xs leading-relaxed mb-3">Per prima cosa definiamo l\'<strong>intestazione della funzione</strong>:</p>' +
+                       '<ul class="list-disc list-inside text-xs text-slate-400 space-y-1 mb-3">' +
+                        '<li>Tipo restituito: <code class="text-pink-400">string</code> (restituisce "PROMOSSO", "NON PROMOSSO" o "SOSPESO").</li>' +
+                        '<li>Parametro: <code class="text-amber-400">T_ALUNNO e</code> (passato per valore).</li>' +
+                       '</ul>' +
+                       '<p class="text-slate-300 text-xs leading-relaxed">Inizializziamo poi un <strong>contatore delle insufficienze</strong> <code class="text-emerald-400">c_ins = 0</code> e l\'indice <code class="text-cyan-400">i</code> per scorrere il vettore.</p>',
+                code: 'string CalcolaEsito(T_ALUNNO e) {\n    int i;\n    int c_ins = 0; // Contatore insufficienze (< 6)\n\n    // ... i prossimi passi verranno aggiunti qui ...\n}'
+            },
+            2: {
+                title: "2. Scansione del Vettore Voti",
+                desc: '<p class="text-slate-300 text-xs leading-relaxed mb-3">Dobbiamo contare quanti voti sufficienti o insufficienti ha lo studente.</p>' +
+                       '<p class="text-slate-300 text-xs leading-relaxed mb-3">Utilizziamo un ciclo <code class="text-blue-400">for</code> che va dall\'indice <code class="text-amber-400">i = 0</code> fino a <code class="text-amber-400">e.nv - 1</code> per esaminare tutti i voti effettivamente memorizzati nell\'alunno.</p>',
+                code: 'string CalcolaEsito(T_ALUNNO e) {\n    int i;\n    int c_ins = 0; // Contatore insufficienze (< 6)\n\n    // Scansione del vettore voti\n    for(i = 0; i < e.nv; i++) {\n        // ... controllo insufficienza ...\n    }\n\n    // ... valutazione finale ...\n}'
+            },
+            3: {
+                title: "3. Conteggio delle Insufficienze",
+                desc: '<p class="text-slate-300 text-xs leading-relaxed mb-3">All\'interno del ciclo for, aggiungiamo un controllo condizionale <code class="text-blue-400">if</code>:</p>' +
+                       '<p class="text-xs text-slate-400 mb-3 bg-slate-950 p-2 rounded">Se il voto corrente <code class="text-cyan-300">e.voti[i] &lt; 6</code>, incrementiamo il contatore <code class="text-emerald-400">c_ins++</code>.</p>',
+                code: 'string CalcolaEsito(T_ALUNNO e) {\n    int i;\n    int c_ins = 0; // Contatore insufficienze (< 6)\n\n    // Scansione del vettore voti\n    for(i = 0; i < e.nv; i++) {\n        if(e.voti[i] < 6) {\n            c_ins++; // Incrementa se voto insufficiente\n        }\n    }\n\n    // ... valutazione finale dell\'esito ...\n}'
+            },
+            4: {
+                title: "4. Valutazione dell'Esito Finale",
+                desc: '<p class="text-slate-300 text-xs leading-relaxed mb-3">Terminato il ciclo, applichiamo la logica richiesta dalla lavagna:</p>' +
+                       '<ul class="list-disc list-inside text-xs text-slate-300 space-y-1 mb-3">' +
+                        '<li><code class="text-emerald-400">if (c_ins == 0)</code> &rarr; <code class="text-emerald-300">return "PROMOSSO";</code></li>' +
+                        '<li><code class="text-red-400">else if (c_ins &gt; 3)</code> &rarr; <code class="text-red-300">return "NON PROMOSSO";</code></li>' +
+                        '<li><code class="text-amber-400">else</code> &rarr; <code class="text-amber-300">return "SOSPESO";</code> (tra 1 e 3 insufficienze)</li>' +
+                       '</ul>',
+                code: 'string CalcolaEsito(T_ALUNNO e) {\n    int i;\n    int c_ins = 0; // Contatore insufficienze (< 6)\n\n    // Scansione del vettore voti\n    for(i = 0; i < e.nv; i++) {\n        if(e.voti[i] < 6) {\n            c_ins++;\n        }\n    }\n\n    // Valutazione finale in base a c_ins\n    if(c_ins == 0) {\n        return "PROMOSSO";\n    } \n    else if(c_ins > 3) {\n        return "NON PROMOSSO";\n    } \n    else {\n        return "SOSPESO"; // 1, 2 o 3 insufficienze\n    }\n}'
+            }
+        };
+
+        function setEsitoStep(stepNum) {
+            currentEsitoStep = stepNum;
+            renderEsitoStep();
+        }
+
+        function nextEsitoStep() {
+            if (currentEsitoStep < 4) {
+                currentEsitoStep++;
+                renderEsitoStep();
+            }
+        }
+
+        function prevEsitoStep() {
+            if (currentEsitoStep > 1) {
+                currentEsitoStep--;
+                renderEsitoStep();
+            }
+        }
+
+        function renderEsitoStep() {
+            const data = esitoStepsData[currentEsitoStep];
+
+            document.getElementById('esito-step-desc').innerHTML = `
+                <h4 class="font-bold text-blue-400 text-base mb-2">${data.title}</h4>
+                ${data.desc}
+            `;
+
+            const codeElem = document.getElementById('esito-code-display');
+            codeElem.textContent = data.code;
+            delete codeElem.dataset.highlighted;
+            hljs.highlightElement(codeElem);
+
+            document.getElementById('step-badge').innerText = `Passo ${currentEsitoStep} di 4`;
+            document.getElementById('btn-prev-step').disabled = (currentEsitoStep === 1);
+            
+            const nextBtn = document.getElementById('btn-next-step-esito');
+            if (currentEsitoStep === 4) {
+                nextBtn.innerHTML = `Completato <i class="fa-solid fa-check ml-1"></i>`;
+                nextBtn.classList.replace('bg-blue-600', 'bg-emerald-600');
+                nextBtn.classList.replace('hover:bg-blue-500', 'hover:bg-emerald-500');
+            } else {
+                nextBtn.innerHTML = `Prossimo Passo <i class="fa-solid fa-arrow-right ml-1"></i>`;
+                nextBtn.classList.replace('bg-emerald-600', 'bg-blue-600');
+                nextBtn.classList.replace('hover:bg-emerald-500', 'hover:bg-blue-500');
+            }
+
+            for (let i = 1; i <= 4; i++) {
+                const btn = document.getElementById(`step-btn-${i}`);
+                if (i === currentEsitoStep) {
+                    btn.className = "w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center transition shadow-lg scale-110 border border-blue-400";
+                } else if (i < currentEsitoStep) {
+                    btn.className = "w-8 h-8 rounded-full bg-emerald-700 text-emerald-100 font-bold text-xs flex items-center justify-center transition";
+                } else {
+                    btn.className = "w-8 h-8 rounded-full bg-slate-700 text-slate-400 font-bold text-xs flex items-center justify-center transition";
+                }
+            }
         }
 
         // ==========================================
@@ -534,14 +613,13 @@ string CalcolaEsito(T_ALUNNO e) {
 
             const ramDisplay = document.getElementById('ram-display');
 
-            // Validazione base input simulatore
             if (isNaN(cod) || cod <= 0) {
-                ramDisplay.innerHTML = `<div class="p-3 bg-red-900/50 border border-red-500 rounded text-red-200 text-xs">❌ errore validation <code>do-while</code>: Il Codice deve essere &gt; 0!</div>`;
+                ramDisplay.innerHTML = `<div class="p-3 bg-red-900/50 border border-red-500 rounded text-red-200 text-xs">❌ Errore validazione <code>do-while</code>: Il Codice deve essere &gt; 0!</div>`;
                 return;
             }
 
             if (isNaN(nv) || nv <= 0 || nv > 20) {
-                ramDisplay.innerHTML = `<div class="p-3 bg-red-900/50 border border-red-500 rounded text-red-200 text-xs">❌ errore validation <code>do-while</code>: Numero voti (e.nv) deve essere compreso tra 1 e NMAX (20)!</div>`;
+                ramDisplay.innerHTML = `<div class="p-3 bg-red-900/50 border border-red-500 rounded text-red-200 text-xs">❌ Errore validazione <code>do-while</code>: Numero voti (e.nv) deve essere compreso tra 1 e NMAX (20)!</div>`;
                 return;
             }
 
@@ -602,7 +680,6 @@ string CalcolaEsito(T_ALUNNO e) {
             document.getElementById('ram-display').innerHTML = `<p class="text-slate-500 text-sm italic">Premi "Esegui Funzione Riempi" per visualizzare lo stato della variabile struct...</p>`;
         }
 
-
         // ==========================================
         // SIMULAZIONE FUNZIONE CALCMEDIA
         // ==========================================
@@ -619,7 +696,6 @@ string CalcolaEsito(T_ALUNNO e) {
             const parsed = rawVoti.split(',').map(v => parseInt(v.trim())).filter(v => !isNaN(v));
 
             if (parsed.length === 0) {
-                alert("Inserire almeno un voto valido!");
                 return;
             }
 
@@ -661,7 +737,6 @@ string CalcolaEsito(T_ALUNNO e) {
 
                 mediaSimState.currentIndex++;
             } else {
-                // Calcolo Media Finale
                 const media = (mediaSimState.S / mediaSimState.nv).toFixed(2);
                 document.getElementById('trace-m').innerText = media;
 
@@ -672,7 +747,6 @@ string CalcolaEsito(T_ALUNNO e) {
                 document.getElementById('btn-next-step').disabled = true;
             }
         }
-
 
         // ==========================================
         // TESTER FUNZIONE CALCOLA ESITO
@@ -686,7 +760,6 @@ string CalcolaEsito(T_ALUNNO e) {
                 return;
             }
 
-            // Conta insufficienze (< 6)
             let c_ins = 0;
             voti.forEach(v => {
                 if (v < 6) c_ins++;
@@ -714,6 +787,12 @@ string CalcolaEsito(T_ALUNNO e) {
                 Totale voti scritti: <strong>${voti.length}</strong> | Insufficienze rilevate: <strong class="text-pink-400">${c_ins}</strong>
             `;
         }
+
+        // Inizializza al caricamento della pagina
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.highlightAll();
+            renderEsitoStep();
+        });
     </script>
 </body>
 </html>
