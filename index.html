@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lezione C++: Vettori nelle Struct</title>
+    <title>Piattaforma Didattica Informatica C++</title>
     <!-- Tailwind CSS per la grafica -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome per le icone -->
@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/cpp.min.js"></script>
-    <!-- MathJax per formattazione matematica elegante -->
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
@@ -23,111 +21,380 @@
             color: #3b82f6;
             font-weight: 600;
         }
-        .step-active {
-            border-left: 4px solid #3b82f6;
-            background-color: #eff6ff;
-        }
     </style>
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col">
 
-    <!-- Header / Navbar -->
+    <!-- Header / Navbar Principale -->
     <header class="bg-slate-800 border-b border-slate-700 sticky top-0 z-50 shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center space-x-3">
-                    <div class="p-2 bg-blue-600 rounded-lg text-white">
-                        <i class="fa-solid fa-code text-xl"></i>
-                    </div>
+                    <button onclick="showHome()" class="p-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-white transition flex items-center justify-center">
+                        <i class="fa-solid fa-graduation-cap text-xl"></i>
+                    </button>
                     <div>
-                        <h1 class="font-bold text-lg text-white leading-tight">C++ Struct & Vettori</h1>
-                        <p class="text-xs text-slate-400">Lezione Interattiva di Informatica</p>
+                        <h1 class="font-bold text-lg text-white leading-tight">Corso Interattivo C++</h1>
+                        <p class="text-xs text-slate-400">Piattaforma Didattica di Informatica</p>
                     </div>
                 </div>
-                <div class="hidden sm:flex space-x-1 text-sm text-slate-300">
-                    <span class="bg-slate-700 px-3 py-1 rounded-full text-xs font-mono text-blue-300">#define NMAX 20</span>
+                <div class="flex items-center space-x-3">
+                    <button onclick="showHome()" class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-lg text-slate-200 transition font-medium flex items-center">
+                        <i class="fa-solid fa-house mr-1.5"></i> Indice Lezioni
+                    </button>
+                    <span class="hidden sm:inline-block bg-slate-700 px-3 py-1 rounded-full text-xs font-mono text-blue-300">#include &lt;iostream&gt;</span>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Navigation Tabs -->
-    <div class="bg-slate-800 border-b border-slate-700 shadow-inner">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <nav class="flex space-x-4 overflow-x-auto" id="tabs">
-                <button onclick="switchTab('teoria')" id="tab-teoria" class="tab-btn active py-4 px-4 text-sm font-medium text-slate-400 hover:text-white transition-all duration-200 whitespace-nowrap">
-                    <i class="fa-solid fa-book-open mr-2"></i>1. Scheda Teoria
-                </button>
-                <button onclick="switchTab('riempi')" id="tab-riempi" class="tab-btn py-4 px-4 text-sm font-medium text-slate-400 hover:text-white transition-all duration-200 whitespace-nowrap">
-                    <i class="fa-solid fa-pen-to-square mr-2"></i>2. Simulazione Riempi()
-                </button>
-                <button onclick="switchTab('media')" id="tab-media" class="tab-btn py-4 px-4 text-sm font-medium text-slate-400 hover:text-white transition-all duration-200 whitespace-nowrap">
-                    <i class="fa-solid fa-calculator mr-2"></i>3. Simulazione CalcMedia()
-                </button>
-                <button onclick="switchTab('esito')" id="tab-esito" class="tab-btn py-4 px-4 text-sm font-medium text-slate-400 hover:text-white transition-all duration-200 whitespace-nowrap">
-                    <i class="fa-solid fa-graduation-cap mr-2"></i>4. Guida Passo Passo: CalcolaEsito()
-                </button>
-            </nav>
+    <!-- VISTA 1: INDEX / DASHBOARD PRINCIPALE -->
+    <div id="view-index" class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        
+        <!-- Welcome Banner -->
+        <div class="bg-gradient-to-r from-blue-900/60 via-slate-800 to-indigo-900/60 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-xl">
+            <div class="max-w-3xl">
+                <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-300 border border-blue-500/30 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+                    Informatica Scuola Superiore
+                </span>
+                <h2 class="text-3xl font-extrabold text-white tracking-tight mb-2">
+                    Modulo di Programmazione in C++
+                </h2>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                    Seleziona un modulo o una lezione dal pannello sottostante per iniziare lo studio guidato con teoria, simulazioni di memoria in tempo reale ed esercitazioni passo-passo.
+                </p>
+            </div>
+        </div>
+
+        <!-- GRIGLIA 10 PULSANTI LEZIONI -->
+        <div>
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold text-white flex items-center">
+                    <i class="fa-solid fa-list-ol text-blue-400 mr-3"></i>
+                    Indice delle Lezioni
+                </h3>
+                <span class="text-xs text-slate-400">10 Moduli Didattici</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-4">
+                
+                <!-- CARD LEZIONE 1 (COLLEGATA A structarray.html) -->
+                <div class="bg-slate-800 hover:bg-slate-750 border border-blue-500/50 hover:border-blue-400 rounded-xl p-5 shadow-lg transition-all duration-200 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono font-bold text-blue-400 bg-blue-900/40 px-2.5 py-1 rounded border border-blue-700/50">LEZIONE 01</span>
+                            <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full font-semibold">Attiva</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">
+                            1. Vettori nelle Struct (structarray.html)
+                        </h4>
+                        <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                            Gestione di strutture dati con vettori singoli e vettori paralleli (`T_ALUNNO`, `T_FATTURA`). Include simulazioni di `Riempi()`, `CalcMedia()` e guida a `CalcolaEsito()`.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between">
+                        <span class="text-xs text-slate-400"><i class="fa-solid fa-code text-blue-400 mr-1"></i> Struct & Array</span>
+                        <a href="structarray.html" onclick="event.preventDefault(); openLesson1();" class="inline-flex items-center text-xs font-semibold text-blue-400 hover:text-blue-300">
+                            Apri Lezione <i class="fa-solid fa-arrow-right ml-1.5 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CARD LEZIONE 2 -->
+                <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl p-5 shadow hover:border-slate-600 transition flex flex-col justify-between opacity-80 hover:opacity-100">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-slate-400 bg-slate-700 px-2.5 py-1 rounded">LEZIONE 02</span>
+                            <span class="text-[10px] bg-slate-700 text-slate-400 px-2 py-0.5 rounded-full">In programma</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-200">
+                            2. Nome Lezione 2
+                        </h4>
+                        <p class="text-xs text-slate-400 mt-2">
+                            Descrizione o argomenti trattati nella lezione 2. Clicca per modificare il nome o accedere ai contenuti.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between">
+                        <span class="text-xs text-slate-500"><i class="fa-solid fa-folder mr-1"></i> Modulo C++</span>
+                        <button onclick="alert('Puoi personalizzare questo pulsante inserendo il link alla Lezione 2')" class="text-xs font-semibold text-slate-400 hover:text-white">
+                            Apri Lezione <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CARD LEZIONE 3 -->
+                <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl p-5 shadow hover:border-slate-600 transition flex flex-col justify-between opacity-80 hover:opacity-100">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-slate-400 bg-slate-700 px-2.5 py-1 rounded">LEZIONE 03</span>
+                            <span class="text-[10px] bg-slate-700 text-slate-400 px-2 py-0.5 rounded-full">In programma</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-200">
+                            3. Nome Lezione 3
+                        </h4>
+                        <p class="text-xs text-slate-400 mt-2">
+                            Descrizione o argomenti trattati nella lezione 3.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between">
+                        <span class="text-xs text-slate-500"><i class="fa-solid fa-folder mr-1"></i> Modulo C++</span>
+                        <button onclick="alert('Puoi personalizzare questo pulsante inserendo il link alla Lezione 3')" class="text-xs font-semibold text-slate-400 hover:text-white">
+                            Apri Lezione <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CARD LEZIONE 4 -->
+                <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl p-5 shadow hover:border-slate-600 transition flex flex-col justify-between opacity-80 hover:opacity-100">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-slate-400 bg-slate-700 px-2.5 py-1 rounded">LEZIONE 04</span>
+                            <span class="text-[10px] bg-slate-700 text-slate-400 px-2 py-0.5 rounded-full">In programma</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-200">
+                            4. Nome Lezione 4
+                        </h4>
+                        <p class="text-xs text-slate-400 mt-2">
+                            Descrizione o argomenti trattati nella lezione 4.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between">
+                        <span class="text-xs text-slate-500"><i class="fa-solid fa-folder mr-1"></i> Modulo C++</span>
+                        <button onclick="alert('Puoi personalizzare questo pulsante inserendo il link alla Lezione 4')" class="text-xs font-semibold text-slate-400 hover:text-white">
+                            Apri Lezione <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CARD LEZIONE 5 -->
+                <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl p-5 shadow hover:border-slate-600 transition flex flex-col justify-between opacity-80 hover:opacity-100">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-slate-400 bg-slate-700 px-2.5 py-1 rounded">LEZIONE 05</span>
+                            <span class="text-[10px] bg-slate-700 text-slate-400 px-2 py-0.5 rounded-full">In programma</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-200">
+                            5. Nome Lezione 5
+                        </h4>
+                        <p class="text-xs text-slate-400 mt-2">
+                            Descrizione o argomenti trattati nella lezione 5.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between">
+                        <span class="text-xs text-slate-500"><i class="fa-solid fa-folder mr-1"></i> Modulo C++</span>
+                        <button onclick="alert('Puoi personalizzare questo pulsante inserendo il link alla Lezione 5')" class="text-xs font-semibold text-slate-400 hover:text-white">
+                            Apri Lezione <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CARD LEZIONE 6 -->
+                <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl p-5 shadow hover:border-slate-600 transition flex flex-col justify-between opacity-80 hover:opacity-100">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-slate-400 bg-slate-700 px-2.5 py-1 rounded">LEZIONE 06</span>
+                            <span class="text-[10px] bg-slate-700 text-slate-400 px-2 py-0.5 rounded-full">In programma</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-200">
+                            6. Nome Lezione 6
+                        </h4>
+                        <p class="text-xs text-slate-400 mt-2">
+                            Descrizione o argomenti trattati nella lezione 6.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between">
+                        <span class="text-xs text-slate-500"><i class="fa-solid fa-folder mr-1"></i> Modulo C++</span>
+                        <button onclick="alert('Puoi personalizzare questo pulsante inserendo il link alla Lezione 6')" class="text-xs font-semibold text-slate-400 hover:text-white">
+                            Apri Lezione <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CARD LEZIONE 7 -->
+                <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl p-5 shadow hover:border-slate-600 transition flex flex-col justify-between opacity-80 hover:opacity-100">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-slate-400 bg-slate-700 px-2.5 py-1 rounded">LEZIONE 07</span>
+                            <span class="text-[10px] bg-slate-700 text-slate-400 px-2 py-0.5 rounded-full">In programma</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-200">
+                            7. Nome Lezione 7
+                        </h4>
+                        <p class="text-xs text-slate-400 mt-2">
+                            Descrizione o argomenti trattati nella lezione 7.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between">
+                        <span class="text-xs text-slate-500"><i class="fa-solid fa-folder mr-1"></i> Modulo C++</span>
+                        <button onclick="alert('Puoi personalizzare questo pulsante inserendo il link alla Lezione 7')" class="text-xs font-semibold text-slate-400 hover:text-white">
+                            Apri Lezione <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CARD LEZIONE 8 -->
+                <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl p-5 shadow hover:border-slate-600 transition flex flex-col justify-between opacity-80 hover:opacity-100">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-slate-400 bg-slate-700 px-2.5 py-1 rounded">LEZIONE 08</span>
+                            <span class="text-[10px] bg-slate-700 text-slate-400 px-2 py-0.5 rounded-full">In programma</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-200">
+                            8. Nome Lezione 8
+                        </h4>
+                        <p class="text-xs text-slate-400 mt-2">
+                            Descrizione o argomenti trattati nella lezione 8.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between">
+                        <span class="text-xs text-slate-500"><i class="fa-solid fa-folder mr-1"></i> Modulo C++</span>
+                        <button onclick="alert('Puoi personalizzare questo pulsante inserendo il link alla Lezione 8')" class="text-xs font-semibold text-slate-400 hover:text-white">
+                            Apri Lezione <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CARD LEZIONE 9 -->
+                <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl p-5 shadow hover:border-slate-600 transition flex flex-col justify-between opacity-80 hover:opacity-100">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-slate-400 bg-slate-700 px-2.5 py-1 rounded">LEZIONE 09</span>
+                            <span class="text-[10px] bg-slate-700 text-slate-400 px-2 py-0.5 rounded-full">In programma</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-200">
+                            9. Nome Lezione 9
+                        </h4>
+                        <p class="text-xs text-slate-400 mt-2">
+                            Descrizione o argomenti trattati nella lezione 9.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between">
+                        <span class="text-xs text-slate-500"><i class="fa-solid fa-folder mr-1"></i> Modulo C++</span>
+                        <button onclick="alert('Puoi personalizzare questo pulsante inserendo il link alla Lezione 9')" class="text-xs font-semibold text-slate-400 hover:text-white">
+                            Apri Lezione <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CARD LEZIONE 10 -->
+                <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl p-5 shadow hover:border-slate-600 transition flex flex-col justify-between opacity-80 hover:opacity-100">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-slate-400 bg-slate-700 px-2.5 py-1 rounded">LEZIONE 10</span>
+                            <span class="text-[10px] bg-slate-700 text-slate-400 px-2 py-0.5 rounded-full">In programma</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-200">
+                            10. Nome Lezione 10
+                        </h4>
+                        <p class="text-xs text-slate-400 mt-2">
+                            Descrizione o argomenti trattati nella lezione 10.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between">
+                        <span class="text-xs text-slate-500"><i class="fa-solid fa-folder mr-1"></i> Modulo C++</span>
+                        <button onclick="alert('Puoi personalizzare questo pulsante inserendo il link alla Lezione 10')" class="text-xs font-semibold text-slate-400 hover:text-white">
+                            Apri Lezione <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 
-    <!-- Content Area -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- VISTA 2: LEZIONE 1 (structarray.html) -->
+    <div id="view-lesson1" class="hidden flex-grow flex-col">
+        <!-- Breadcrumb / Torna all'indice -->
+        <div class="bg-slate-850 border-b border-slate-700/60 py-2.5 px-4 bg-slate-800/50">
+            <div class="max-w-7xl mx-auto flex items-center justify-between text-xs text-slate-400">
+                <div class="flex items-center space-x-2">
+                    <button onclick="showHome()" class="hover:text-blue-400 transition">Indice Lezioni</button>
+                    <span>/</span>
+                    <span class="text-slate-200 font-medium">Lezione 1: structarray.html</span>
+                </div>
+                <button onclick="showHome()" class="text-blue-400 hover:text-blue-300 font-medium flex items-center">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Torna all'Indice
+                </button>
+            </div>
+        </div>
 
-        <!-- TAB 1: SCHEDA TEORIA -->
-        <div id="content-teoria" class="space-y-8">
-            <!-- Intro Section -->
-            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
-                <h2 class="text-2xl font-bold text-blue-400 mb-4 flex items-center">
-                    <i class="fa-solid fa-lightbulb text-amber-400 mr-3"></i>
-                    Vettori nelle Struct in C++
-                </h2>
-                <p class="text-slate-300 leading-relaxed mb-4">
-                    Una <code class="bg-slate-900 px-2 py-1 rounded text-pink-400">struct</code> (struttura) è un tipo di dato personalizzato che raggruppa elementi di tipo diverso sotto un unico nome. 
-                    Quando inseriamo un <strong>vettore dentro una struct</strong>, possiamo rappresentare entità complesse che contengono liste o collezioni di dati omogenei.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                    <div class="bg-slate-900/80 p-5 rounded-lg border border-slate-700">
-                        <h3 class="font-semibold text-emerald-400 text-lg mb-2 flex items-center">
-                            <i class="fa-solid fa-user-graduate mr-2"></i> Caso 1: Vettore Singolo (`T_ALUNNO`)
-                        </h3>
-                        <p class="text-slate-300 text-sm mb-3">
-                            Un singolo vettore all'interno della struct serve a contenere una serie di valori associati all'entità. Un classico attributo contatore (es. <code class="text-amber-300">nv</code>) tiene traccia degli elementi effettivamente utilizzati rispetto al massimo (<code class="text-amber-300">NMAX</code>).
-                        </p>
-                        <ul class="list-disc list-inside text-xs text-slate-400 space-y-1">
-                            <li>Dati anagrafici individuali (Codice, Cognome, Nome)</li>
-                            <li>Un array interno di voti scolastici</li>
-                            <li>Dimensione dinamica logica tramite <code class="text-amber-300">nv</code></li>
-                        </ul>
-                    </div>
+        <!-- Main Navigation Tabs della Lezione 1 -->
+        <div class="bg-slate-800 border-b border-slate-700 shadow-inner">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <nav class="flex space-x-4 overflow-x-auto" id="tabs">
+                    <button onclick="switchTab('teoria')" id="tab-teoria" class="tab-btn active py-4 px-4 text-sm font-medium text-slate-400 hover:text-white transition-all duration-200 whitespace-nowrap">
+                        <i class="fa-solid fa-book-open mr-2"></i>1. Scheda Teoria
+                    </button>
+                    <button onclick="switchTab('riempi')" id="tab-riempi" class="tab-btn py-4 px-4 text-sm font-medium text-slate-400 hover:text-white transition-all duration-200 whitespace-nowrap">
+                        <i class="fa-solid fa-pen-to-square mr-2"></i>2. Simulazione Riempi()
+                    </button>
+                    <button onclick="switchTab('media')" id="tab-media" class="tab-btn py-4 px-4 text-sm font-medium text-slate-400 hover:text-white transition-all duration-200 whitespace-nowrap">
+                        <i class="fa-solid fa-calculator mr-2"></i>3. Simulazione CalcMedia()
+                    </button>
+                    <button onclick="switchTab('esito')" id="tab-esito" class="tab-btn py-4 px-4 text-sm font-medium text-slate-400 hover:text-white transition-all duration-200 whitespace-nowrap">
+                        <i class="fa-solid fa-graduation-cap mr-2"></i>4. Guida Passo Passo: CalcolaEsito()
+                    </button>
+                </nav>
+            </div>
+        </div>
 
-                    <div class="bg-slate-900/80 p-5 rounded-lg border border-slate-700">
-                        <h3 class="font-semibold text-purple-400 text-lg mb-2 flex items-center">
-                            <i class="fa-solid fa-file-invoice-dollar mr-2"></i> Caso 2: Vettori Paralleli (`T_FATTURA`)
-                        </h3>
-                        <p class="text-slate-300 text-sm mb-3">
-                            Più vettori all'interno della stessa struct di pari dimensione massima. L'elemento in posizione <code class="text-amber-300">i</code> del primo vettore si riferisce all'elemento in posizione <code class="text-amber-300">i</code> degli altri vettori.
-                        </p>
-                        <ul class="list-disc list-inside text-xs text-slate-400 space-y-1">
-                            <li><code class="text-pink-300">NP[i]</code>: Nome del prodotto i-esimo</li>
-                            <li><code class="text-pink-300">PP[i]</code>: Prezzo unitario del prodotto i-esimo</li>
-                            <li><code class="text-pink-300">QP[i]</code>: Quantità acquistata del prodotto i-esimo</li>
-                            <li><code class="text-amber-300">np</code>: Numero di prodotti correnti nella fattura</li>
-                        </ul>
+        <!-- Area Contenuti della Lezione 1 -->
+        <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+            <!-- TAB 1: SCHEDA TEORIA -->
+            <div id="content-teoria" class="space-y-8">
+                <!-- Intro Section -->
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                    <h2 class="text-2xl font-bold text-blue-400 mb-4 flex items-center">
+                        <i class="fa-solid fa-lightbulb text-amber-400 mr-3"></i>
+                        Vettori nelle Struct in C++
+                    </h2>
+                    <p class="text-slate-300 leading-relaxed mb-4">
+                        Una <code class="bg-slate-900 px-2 py-1 rounded text-pink-400">struct</code> (struttura) è un tipo di dato personalizzato che raggruppa elementi di tipo diverso sotto un unico nome. 
+                        Quando inseriamo un <strong>vettore dentro una struct</strong>, possiamo rappresentare entità complesse che contengono liste o collezioni di dati omogenei.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                        <div class="bg-slate-900/80 p-5 rounded-lg border border-slate-700">
+                            <h3 class="font-semibold text-emerald-400 text-lg mb-2 flex items-center">
+                                <i class="fa-solid fa-user-graduate mr-2"></i> Caso 1: Vettore Singolo (`T_ALUNNO`)
+                            </h3>
+                            <p class="text-slate-300 text-sm mb-3">
+                                Un singolo vettore all'interno della struct serve a contenere una serie di valori associati all'entità. Un classico attributo contatore (es. <code class="text-amber-300">nv</code>) tiene traccia degli elementi effettivamente utilizzati rispetto al massimo (<code class="text-amber-300">NMAX</code>).
+                            </p>
+                            <ul class="list-disc list-inside text-xs text-slate-400 space-y-1">
+                                <li>Dati anagrafici individuali (Codice, Cognome, Nome)</li>
+                                <li>Un array interno di voti scolastici</li>
+                                <li>Dimensione dinamica logica tramite <code class="text-amber-300">nv</code></li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-slate-900/80 p-5 rounded-lg border border-slate-700">
+                            <h3 class="font-semibold text-purple-400 text-lg mb-2 flex items-center">
+                                <i class="fa-solid fa-file-invoice-dollar mr-2"></i> Caso 2: Vettori Paralleli (`T_FATTURA`)
+                            </h3>
+                            <p class="text-slate-300 text-sm mb-3">
+                                Più vettori all'interno della stessa struct di pari dimensione massima. L'elemento in posizione <code class="text-amber-300">i</code> del primo vettore si riferisce all'elemento in posizione <code class="text-amber-300">i</code> degli altri vettori.
+                            </p>
+                            <ul class="list-disc list-inside text-xs text-slate-400 space-y-1">
+                                <li><code class="text-pink-300">NP[i]</code>: Nome del prodotto i-esimo</li>
+                                <li><code class="text-pink-300">PP[i]</code>: Prezzo unitario del prodotto i-esimo</li>
+                                <li><code class="text-pink-300">QP[i]</code>: Quantità acquistata del prodotto i-esimo</li>
+                                <li><code class="text-amber-300">np</code>: Numero di prodotti correnti nella fattura</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- confronto codice lavagna -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Code Box T_ALUNNO -->
-                <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-lg">
-                    <div class="bg-slate-700 px-4 py-3 flex justify-between items-center border-b border-slate-600">
-                        <span class="font-semibold text-emerald-400 text-sm"><i class="fa-solid fa-code mr-2"></i>Struttura T_ALUNNO (Dalla Lavagna - Foto 1)</span>
-                        <span class="text-xs bg-emerald-900/60 text-emerald-300 px-2 py-0.5 rounded">Vettore Singolo</span>
-                    </div>
-                    <div class="p-4">
-                        <pre><code class="language-cpp">#define NMAX 20
+                <!-- confronto codice lavagna -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Code Box T_ALUNNO -->
+                    <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-lg">
+                        <div class="bg-slate-700 px-4 py-3 flex justify-between items-center border-b border-slate-600">
+                            <span class="font-semibold text-emerald-400 text-sm"><i class="fa-solid fa-code mr-2"></i>Struttura T_ALUNNO</span>
+                            <span class="text-xs bg-emerald-900/60 text-emerald-300 px-2 py-0.5 rounded">Vettore Singolo</span>
+                        </div>
+                        <div class="p-4">
+                            <pre><code class="language-cpp">#define NMAX 20
 
 struct T_ALUNNO {
     int cod;             // Codice univoco studente
@@ -136,25 +403,25 @@ struct T_ALUNNO {
     int voti[NMAX];      // Vettore fisso di voti (max 20)
     int nv;              // Numero di voti effettivi inseriti
 };</code></pre>
-                        <div class="mt-4 bg-slate-900 p-3 rounded text-xs text-slate-400">
-                            <strong class="text-slate-200">Spiegazione Campi:</strong>
-                            <ul class="mt-1 list-disc list-inside space-y-1">
-                                <li><code class="text-cyan-400">cod</code>, <code class="text-cyan-400">Cogn</code>, <code class="text-cyan-400">Nome</code>: Campi singoli anagrafici.</li>
-                                <li><code class="text-cyan-400">voti</code>: Array di interi dimensionato a <code class="text-amber-400">NMAX</code> (20).</li>
-                                <li><code class="text-cyan-400">nv</code>: Intero che indica quanti elementi del vettore <code class="text-cyan-400">voti</code> sono validi (da 0 a NMAX).</li>
-                            </ul>
+                            <div class="mt-4 bg-slate-900 p-3 rounded text-xs text-slate-400">
+                                <strong class="text-slate-200">Spiegazione Campi:</strong>
+                                <ul class="mt-1 list-disc list-inside space-y-1">
+                                    <li><code class="text-cyan-400">cod</code>, <code class="text-cyan-400">Cogn</code>, <code class="text-cyan-400">Nome</code>: Campi singoli anagrafici.</li>
+                                    <li><code class="text-cyan-400">voti</code>: Array di interi dimensionato a <code class="text-amber-400">NMAX</code> (20).</li>
+                                    <li><code class="text-cyan-400">nv</code>: Intero che indica quanti elementi del vettore <code class="text-cyan-400">voti</code> sono validi (da 0 a NMAX).</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Code Box T_FATTURA -->
-                <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-lg">
-                    <div class="bg-slate-700 px-4 py-3 flex justify-between items-center border-b border-slate-600">
-                        <span class="font-semibold text-purple-400 text-sm"><i class="fa-solid fa-code mr-2"></i>Struttura T_FATTURA (Dalla Lavagna - Foto 5)</span>
-                        <span class="text-xs bg-purple-900/60 text-purple-300 px-2 py-0.5 rounded">Vettori Paralleli</span>
-                    </div>
-                    <div class="p-4">
-                        <pre><code class="language-cpp">#define NMAX 20
+                    <!-- Code Box T_FATTURA -->
+                    <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-lg">
+                        <div class="bg-slate-700 px-4 py-3 flex justify-between items-center border-b border-slate-600">
+                            <span class="font-semibold text-purple-400 text-sm"><i class="fa-solid fa-code mr-2"></i>Struttura T_FATTURA</span>
+                            <span class="text-xs bg-purple-900/60 text-purple-300 px-2 py-0.5 rounded">Vettori Paralleli</span>
+                        </div>
+                        <div class="p-4">
+                            <pre><code class="language-cpp">#define NMAX 20
 
 struct T_FATTURA {
     int nf;              // Numero fattura
@@ -165,75 +432,75 @@ struct T_FATTURA {
     int QP[NMAX];        // Vettore Quantità Prodotti
     int np;              // Numero effettivo di prodotti
 };</code></pre>
-                        <div class="mt-4 bg-slate-900 p-3 rounded text-xs text-slate-400">
-                            <strong class="text-slate-200">Spiegazione Vettori Paralleli:</strong>
-                            <p class="mt-1">
-                                Per ogni generico indice <code class="text-amber-400">i</code> (da 0 a np-1), la combinazione <code class="text-purple-300">NP[i]</code>, <code class="text-purple-300">PP[i]</code> e <code class="text-purple-300">QP[i]</code> descrive completamente l'articolo i-esimo inserito in fattura.
-                            </p>
+                            <div class="mt-4 bg-slate-900 p-3 rounded text-xs text-slate-400">
+                                <strong class="text-slate-200">Spiegazione Vettori Paralleli:</strong>
+                                <p class="mt-1">
+                                    Per ogni generico indice <code class="text-amber-400">i</code> (da 0 a np-1), la combinazione <code class="text-purple-300">NP[i]</code>, <code class="text-purple-300">PP[i]</code> e <code class="text-purple-300">QP[i]</code> descrive completamente l'articolo i-esimo inserito in fattura.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- TAB 2: SIMULAZIONE RIEMPI() -->
-        <div id="content-riempi" class="hidden space-y-6">
-            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
-                <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-700 pb-4 mb-4 gap-4">
-                    <div>
-                        <h2 class="text-xl font-bold text-blue-400 flex items-center">
-                            <i class="fa-solid fa-pen-to-square mr-2"></i>Funzione `Riempi(T_ALUNNO &e)`
-                        </h2>
-                        <p class="text-xs text-slate-400">Foto Lavagna 2 - Lettura guidata con controlli di validità `do-while`</p>
-                    </div>
-                    <div class="flex space-x-2">
-                        <button onclick="resetRiempiSim()" class="bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded text-xs font-semibold transition">
-                            <i class="fa-solid fa-rotate-left mr-1"></i> Reset
-                        </button>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                    <!-- Form Input Simulato -->
-                    <div class="lg:col-span-5 bg-slate-900/90 p-5 rounded-lg border border-slate-700 space-y-4">
-                        <h3 class="font-semibold text-slate-200 text-sm border-b border-slate-800 pb-2">Simulatore Input Utente (cin &gt;&gt;)</h3>
-
+            <!-- TAB 2: SIMULAZIONE RIEMPI() -->
+            <div id="content-riempi" class="hidden space-y-6">
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-700 pb-4 mb-4 gap-4">
                         <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-1">1. Codice Alunno (Deve essere &gt; 0)</label>
-                            <input type="number" id="sim-cod" value="101" class="w-full bg-slate-800 border border-slate-600 rounded px-3 py-1.5 text-sm text-white focus:outline-none focus:border-blue-500">
+                            <h2 class="text-xl font-bold text-blue-400 flex items-center">
+                                <i class="fa-solid fa-pen-to-square mr-2"></i>Funzione `Riempi(T_ALUNNO &e)`
+                            </h2>
+                            <p class="text-xs text-slate-400">Lettura guidata con controlli di validità `do-while`</p>
                         </div>
+                        <div class="flex space-x-2">
+                            <button onclick="resetRiempiSim()" class="bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded text-xs font-semibold transition">
+                                <i class="fa-solid fa-rotate-left mr-1"></i> Reset
+                            </button>
+                        </div>
+                    </div>
 
-                        <div class="grid grid-cols-2 gap-2">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        <!-- Form Input Simulato -->
+                        <div class="lg:col-span-5 bg-slate-900/90 p-5 rounded-lg border border-slate-700 space-y-4">
+                            <h3 class="font-semibold text-slate-200 text-sm border-b border-slate-800 pb-2">Simulatore Input Utente (cin &gt;&gt;)</h3>
+
                             <div>
-                                <label class="block text-xs font-medium text-slate-400 mb-1">2. Cognome</label>
-                                <input type="text" id="sim-cogn" value="Rossi" class="w-full bg-slate-800 border border-slate-600 rounded px-3 py-1.5 text-sm text-white focus:outline-none focus:border-blue-500">
+                                <label class="block text-xs font-medium text-slate-400 mb-1">1. Codice Alunno (Deve essere &gt; 0)</label>
+                                <input type="number" id="sim-cod" value="101" class="w-full bg-slate-800 border border-slate-600 rounded px-3 py-1.5 text-sm text-white focus:outline-none focus:border-blue-500">
                             </div>
+
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-400 mb-1">2. Cognome</label>
+                                    <input type="text" id="sim-cogn" value="Rossi" class="w-full bg-slate-800 border border-slate-600 rounded px-3 py-1.5 text-sm text-white focus:outline-none focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-400 mb-1">3. Nome</label>
+                                    <input type="text" id="sim-nome" value="Mario" class="w-full bg-slate-800 border border-slate-600 rounded px-3 py-1.5 text-sm text-white focus:outline-none focus:border-blue-500">
+                                </div>
+                            </div>
+
                             <div>
-                                <label class="block text-xs font-medium text-slate-400 mb-1">3. Nome</label>
-                                <input type="text" id="sim-nome" value="Mario" class="w-full bg-slate-800 border border-slate-600 rounded px-3 py-1.5 text-sm text-white focus:outline-none focus:border-blue-500">
+                                <label class="block text-xs font-medium text-slate-400 mb-1">4. Numero Voti (e.nv, 1-20)</label>
+                                <input type="number" id="sim-nv" min="1" max="20" value="4" class="w-full bg-slate-800 border border-slate-600 rounded px-3 py-1.5 text-sm text-white focus:outline-none focus:border-blue-500">
                             </div>
+
+                            <div>
+                                <label class="block text-xs font-medium text-slate-400 mb-1">5. Voti (separati da virgola, valori 0-10)</label>
+                                <input type="text" id="sim-voti-list" value="7, 5, 8, 4" class="w-full bg-slate-800 border border-slate-600 rounded px-3 py-1.5 text-sm text-white focus:outline-none focus:border-blue-500">
+                            </div>
+
+                            <button onclick="runRiempiSim()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 rounded text-sm transition shadow">
+                                <i class="fa-solid fa-play mr-2"></i> Esegui Funzione Riempi
+                            </button>
                         </div>
 
-                        <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-1">4. Numero Voti (e.nv, 1-20)</label>
-                            <input type="number" id="sim-nv" min="1" max="20" value="4" class="w-full bg-slate-800 border border-slate-600 rounded px-3 py-1.5 text-sm text-white focus:outline-none focus:border-blue-500">
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-1">5. Voti (separati da virgola, valori 0-10)</label>
-                            <input type="text" id="sim-voti-list" value="7, 5, 8, 4" class="w-full bg-slate-800 border border-slate-600 rounded px-3 py-1.5 text-sm text-white focus:outline-none focus:border-blue-500">
-                        </div>
-
-                        <button onclick="runRiempiSim()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 rounded text-sm transition shadow">
-                            <i class="fa-solid fa-play mr-2"></i> Esegui Funzione Riempi
-                        </button>
-                    </div>
-
-                    <!-- Codice C++ & Stato Memoria -->
-                    <div class="lg:col-span-7 space-y-4">
-                        <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 text-xs font-mono overflow-x-auto">
-                            <div class="text-slate-500 mb-2">// Codice C++ eseguito (con controlli do-while)</div>
-                            <pre><code class="language-cpp">void Riempi(T_ALUNNO &e) {
+                        <!-- Codice C++ & Stato Memoria -->
+                        <div class="lg:col-span-7 space-y-4">
+                            <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 text-xs font-mono overflow-x-auto">
+                                <div class="text-slate-500 mb-2">// Codice C++ eseguito (con controlli do-while)</div>
+                                <pre><code class="language-cpp">void Riempi(T_ALUNNO &e) {
     int i;
     // Controllo validità Codice (>0)
     do {
@@ -258,58 +525,58 @@ struct T_FATTURA {
         } while(e.voti[i] < 0 || e.voti[i] > 10);
     }
 }</code></pre>
-                        </div>
+                            </div>
 
-                        <!-- Visualizzatore di Stato Struct Memory -->
-                        <div class="bg-slate-900 p-4 rounded-lg border border-slate-700">
-                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Stato della Struct `e` in Memoria RAM</h4>
-                            <div id="ram-display" class="space-y-3">
-                                <p class="text-slate-500 text-sm italic">Premi "Esegui Funzione Riempi" per visualizzare lo stato della variabile struct...</p>
+                            <!-- Visualizzatore di Stato Struct Memory -->
+                            <div class="bg-slate-900 p-4 rounded-lg border border-slate-700">
+                                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Stato della Struct `e` in Memoria RAM</h4>
+                                <div id="ram-display" class="space-y-3">
+                                    <p class="text-slate-500 text-sm italic">Premi "Esegui Funzione Riempi" per visualizzare lo stato della variabile struct...</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- TAB 3: SIMULAZIONE CALCMEDIA() -->
-        <div id="content-media" class="hidden space-y-6">
-            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
-                <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-700 pb-4 mb-4 gap-4">
-                    <div>
-                        <h2 class="text-xl font-bold text-blue-400 flex items-center">
-                            <i class="fa-solid fa-calculator mr-2"></i>Funzione `CalcMedia(T_ALUNNO e)`
-                        </h2>
-                        <p class="text-xs text-slate-400">Foto Lavagna 3 - Calcolo dell'accumulatore e della media aritmetica</p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                    <!-- Configurazione della Struct per la simulazione media -->
-                    <div class="lg:col-span-4 bg-slate-900/90 p-5 rounded-lg border border-slate-700 space-y-4">
-                        <h3 class="font-semibold text-slate-200 text-sm border-b border-slate-800 pb-2">Dati Struct di Test</h3>
-                        <p class="text-xs text-slate-400">Imposta i voti per simulare passo passo l'esecuzione del ciclo `for`:</p>
-                        
+            <!-- TAB 3: SIMULAZIONE CALCMEDIA() -->
+            <div id="content-media" class="hidden space-y-6">
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-700 pb-4 mb-4 gap-4">
                         <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-1">Voti dell'alunno (separati da virgola)</label>
-                            <input type="text" id="media-voti-input" value="6, 8, 5, 7" class="w-full bg-slate-800 border border-slate-600 rounded px-3 py-1.5 text-sm text-white focus:outline-none focus:border-blue-500">
-                        </div>
-
-                        <div class="pt-2 flex flex-col gap-2">
-                            <button onclick="startMediaSim()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2 rounded text-sm transition">
-                                <i class="fa-solid fa-play mr-2"></i> Avvia Simulazione Passaggio per Passaggio
-                            </button>
-                            <button onclick="stepMediaSim()" id="btn-next-step" disabled class="w-full bg-blue-600 hover:bg-blue-500 disabled:bg-slate-700 disabled:text-slate-500 text-white font-semibold py-2 rounded text-sm transition">
-                                <i class="fa-solid fa-forward-step mr-2"></i> Passo Successivo
-                            </button>
+                            <h2 class="text-xl font-bold text-blue-400 flex items-center">
+                                <i class="fa-solid fa-calculator mr-2"></i>Funzione `CalcMedia(T_ALUNNO e)`
+                            </h2>
+                            <p class="text-xs text-slate-400">Calcolo dell'accumulatore e della media aritmetica</p>
                         </div>
                     </div>
 
-                    <!-- Visualizzazione Step del Ciclo FOR -->
-                    <div class="lg:col-span-8 space-y-4">
-                        <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 text-xs font-mono">
-                            <div class="text-slate-500 mb-2">// Codice C++ CalcMedia (Foto 3)</div>
-                            <pre><code class="language-cpp">float CalcMedia(T_ALUNNO e) {
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        <!-- Configurazione della Struct per la simulazione media -->
+                        <div class="lg:col-span-4 bg-slate-900/90 p-5 rounded-lg border border-slate-700 space-y-4">
+                            <h3 class="font-semibold text-slate-200 text-sm border-b border-slate-800 pb-2">Dati Struct di Test</h3>
+                            <p class="text-xs text-slate-400">Imposta i voti per simulare passo passo l'esecuzione del ciclo `for`:</p>
+                            
+                            <div>
+                                <label class="block text-xs font-medium text-slate-400 mb-1">Voti dell'alunno (separati da virgola)</label>
+                                <input type="text" id="media-voti-input" value="6, 8, 5, 7" class="w-full bg-slate-800 border border-slate-600 rounded px-3 py-1.5 text-sm text-white focus:outline-none focus:border-blue-500">
+                            </div>
+
+                            <div class="pt-2 flex flex-col gap-2">
+                                <button onclick="startMediaSim()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2 rounded text-sm transition">
+                                    <i class="fa-solid fa-play mr-2"></i> Avvia Simulazione
+                                </button>
+                                <button onclick="stepMediaSim()" id="btn-next-step" disabled class="w-full bg-blue-600 hover:bg-blue-500 disabled:bg-slate-700 disabled:text-slate-500 text-white font-semibold py-2 rounded text-sm transition">
+                                    <i class="fa-solid fa-forward-step mr-2"></i> Passo Successivo
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Visualizzazione Step del Ciclo FOR -->
+                        <div class="lg:col-span-8 space-y-4">
+                            <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 text-xs font-mono">
+                                <div class="text-slate-500 mb-2">// Codice C++ CalcMedia</div>
+                                <pre><code class="language-cpp">float CalcMedia(T_ALUNNO e) {
     int S, i;
     float M;
     S = 0;
@@ -319,175 +586,191 @@ struct T_FATTURA {
     M = (float)S / e.nv;
     return M;
 }</code></pre>
-                        </div>
-
-                        <!-- Traccia Variabili -->
-                        <div class="bg-slate-900 p-5 rounded-lg border border-slate-700">
-                            <h4 class="text-sm font-bold text-slate-300 border-b border-slate-800 pb-2 mb-3">Tabella di Traccia delle Variabili</h4>
-                            <div class="grid grid-cols-4 gap-2 text-center text-xs font-mono mb-4">
-                                <div class="bg-slate-800 p-2 rounded border border-slate-700">
-                                    <span class="text-slate-400 block text-[10px]">Indice i</span>
-                                    <span id="trace-i" class="text-amber-400 font-bold text-base">-</span>
-                                </div>
-                                <div class="bg-slate-800 p-2 rounded border border-slate-700">
-                                    <span class="text-slate-400 block text-[10px]">voti[i]</span>
-                                    <span id="trace-voti" class="text-cyan-400 font-bold text-base">-</span>
-                                </div>
-                                <div class="bg-slate-800 p-2 rounded border border-slate-700">
-                                    <span class="text-slate-400 block text-[10px]">Somma S</span>
-                                    <span id="trace-s" class="text-emerald-400 font-bold text-base">0</span>
-                                </div>
-                                <div class="bg-slate-800 p-2 rounded border border-slate-700">
-                                    <span class="text-slate-400 block text-[10px]">Media M</span>
-                                    <span id="trace-m" class="text-pink-400 font-bold text-base">-</span>
-                                </div>
                             </div>
 
-                            <div id="media-log" class="bg-slate-950 p-3 rounded font-mono text-xs text-slate-300 h-32 overflow-y-auto space-y-1">
-                                <p class="text-slate-500 italic">Clicca su "Avvia Simulazione" per iniziare il debug visivo.</p>
+                            <!-- Traccia Variabili -->
+                            <div class="bg-slate-900 p-5 rounded-lg border border-slate-700">
+                                <h4 class="text-sm font-bold text-slate-300 border-b border-slate-800 pb-2 mb-3">Tabella di Traccia delle Variabili</h4>
+                                <div class="grid grid-cols-4 gap-2 text-center text-xs font-mono mb-4">
+                                    <div class="bg-slate-800 p-2 rounded border border-slate-700">
+                                        <span class="text-slate-400 block text-[10px]">Indice i</span>
+                                        <span id="trace-i" class="text-amber-400 font-bold text-base">-</span>
+                                    </div>
+                                    <div class="bg-slate-800 p-2 rounded border border-slate-700">
+                                        <span class="text-slate-400 block text-[10px]">voti[i]</span>
+                                        <span id="trace-voti" class="text-cyan-400 font-bold text-base">-</span>
+                                    </div>
+                                    <div class="bg-slate-800 p-2 rounded border border-slate-700">
+                                        <span class="text-slate-400 block text-[10px]">Somma S</span>
+                                        <span id="trace-s" class="text-emerald-400 font-bold text-base">0</span>
+                                    </div>
+                                    <div class="bg-slate-800 p-2 rounded border border-slate-700">
+                                        <span class="text-slate-400 block text-[10px]">Media M</span>
+                                        <span id="trace-m" class="text-pink-400 font-bold text-base">-</span>
+                                    </div>
+                                </div>
+
+                                <div id="media-log" class="bg-slate-950 p-3 rounded font-mono text-xs text-slate-300 h-32 overflow-y-auto space-y-1">
+                                    <p class="text-slate-500 italic">Clicca su "Avvia Simulazione" per iniziare il debug visivo.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- TAB 4: FUNZIONE CALCOLAESITO() -->
-        <div id="content-esito" class="hidden space-y-8">
-            <!-- Header Spiegazione Problema -->
-            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
-                <h2 class="text-2xl font-bold text-blue-400 mb-2 flex items-center">
-                    <i class="fa-solid fa-graduation-cap text-amber-400 mr-3"></i>
-                    Costruzione Guidata: Funzione `CalcolaEsito()`
-                </h2>
-                <p class="text-slate-300 text-sm leading-relaxed mb-4">
-                    Dalla Foto 4 della lavagna: <i>"Dato un alunno, restituire l'esito dello scrutinio"</i>. 
-                    Impariamo a scrivere la funzione passo dopo passo, analizzando il problema e aggiungendo le relative righe di codice C++.
-                </p>
+            <!-- TAB 4: FUNZIONE CALCOLAESITO() -->
+            <div id="content-esito" class="hidden space-y-8">
+                <!-- Header Spiegazione Problema -->
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                    <h2 class="text-2xl font-bold text-blue-400 mb-2 flex items-center">
+                        <i class="fa-solid fa-graduation-cap text-amber-400 mr-3"></i>
+                        Costruzione Guidata: Funzione `CalcolaEsito()`
+                    </h2>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                        <i>"Dato un alunno, restituire l'esito dello scrutinio"</i>. 
+                        Scriviamo la funzione passo dopo passo analizzando la logica prima di comporre le singole righe in C++.
+                    </p>
 
-                <!-- Regole di Business / Logica della Lavagna -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
-                    <div class="bg-emerald-950/40 border border-emerald-600/40 p-4 rounded-lg">
-                        <div class="flex items-center space-x-2 text-emerald-400 font-bold text-sm mb-1">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span>PROMOSSO</span>
+                    <!-- Regole di Business / Logica della Lavagna -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+                        <div class="bg-emerald-950/40 border border-emerald-600/40 p-4 rounded-lg">
+                            <div class="flex items-center space-x-2 text-emerald-400 font-bold text-sm mb-1">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span>PROMOSSO</span>
+                            </div>
+                            <p class="text-xs text-slate-300">
+                                <strong>0 insufficienze</strong> (voti &lt; 6)
+                            </p>
                         </div>
-                        <p class="text-xs text-slate-300">
-                            <strong>0 insufficienze</strong> (voti &lt; 6)
-                        </p>
-                    </div>
 
-                    <div class="bg-red-950/40 border border-red-600/40 p-4 rounded-lg">
-                        <div class="flex items-center space-x-2 text-red-400 font-bold text-sm mb-1">
-                            <i class="fa-solid fa-circle-xmark"></i>
-                            <span>NON PROMOSSO</span>
+                        <div class="bg-red-950/40 border border-red-600/40 p-4 rounded-lg">
+                            <div class="flex items-center space-x-2 text-red-400 font-bold text-sm mb-1">
+                                <i class="fa-solid fa-circle-xmark"></i>
+                                <span>NON PROMOSSO</span>
+                            </div>
+                            <p class="text-xs text-slate-300">
+                                <strong>Più di 3 insufficienze</strong> (&gt; 3)
+                            </p>
                         </div>
-                        <p class="text-xs text-slate-300">
-                            <strong>Più di 3 insufficienze</strong> (&gt; 3)
-                        </p>
-                    </div>
 
-                    <div class="bg-amber-950/40 border border-amber-600/40 p-4 rounded-lg">
-                        <div class="flex items-center space-x-2 text-amber-400 font-bold text-sm mb-1">
-                            <i class="fa-solid fa-triangle-exclamation"></i>
-                            <span>SOSPESO</span>
+                        <div class="bg-amber-950/40 border border-amber-600/40 p-4 rounded-lg">
+                            <div class="flex items-center space-x-2 text-amber-400 font-bold text-sm mb-1">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                <span>SOSPESO</span>
+                            </div>
+                            <p class="text-xs text-slate-300">
+                                <strong>Altrimenti</strong> (1, 2 o 3 insufficienze)
+                            </p>
                         </div>
-                        <p class="text-xs text-slate-300">
-                            <strong>Altrimenti</strong> (1, 2 o 3 insufficienze)
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PERCORSO GUIDATO PASSO PASSO -->
-            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg space-y-6">
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-slate-700 pb-4 gap-4">
-                    <div>
-                        <h3 class="text-lg font-bold text-slate-100 flex items-center">
-                            <i class="fa-solid fa-list-check text-blue-400 mr-2"></i> 
-                            Sviluppo Progressivo del Codice
-                        </h3>
-                        <p class="text-xs text-slate-400">Avanza nei passi per comporre la funzione C++</p>
-                    </div>
-
-                    <!-- Indicatori di Progress -->
-                    <div class="flex items-center space-x-2">
-                        <button onclick="setEsitoStep(1)" id="step-btn-1" class="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center transition">1</button>
-                        <div class="w-4 h-0.5 bg-slate-700"></div>
-                        <button onclick="setEsitoStep(2)" id="step-btn-2" class="w-8 h-8 rounded-full bg-slate-700 text-slate-400 font-bold text-xs flex items-center justify-center transition">2</button>
-                        <div class="w-4 h-0.5 bg-slate-700"></div>
-                        <button onclick="setEsitoStep(3)" id="step-btn-3" class="w-8 h-8 rounded-full bg-slate-700 text-slate-400 font-bold text-xs flex items-center justify-center transition">3</button>
-                        <div class="w-4 h-0.5 bg-slate-700"></div>
-                        <button onclick="setEsitoStep(4)" id="step-btn-4" class="w-8 h-8 rounded-full bg-slate-700 text-slate-400 font-bold text-xs flex items-center justify-center transition">4</button>
                     </div>
                 </div>
 
-                <!-- Schede dei singoli Passi -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                    <!-- Spiegazione del Passo Corrente -->
-                    <div class="lg:col-span-5 bg-slate-900 p-5 rounded-lg border border-slate-700 space-y-4">
-                        <div id="esito-step-desc">
-                            <!-- Popolato dinamicamente da JS -->
+                <!-- PERCORSO GUIDATO PASSO PASSO -->
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg space-y-6">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-slate-700 pb-4 gap-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-100 flex items-center">
+                                <i class="fa-solid fa-list-check text-blue-400 mr-2"></i> 
+                                Sviluppo Progressivo del Codice
+                            </h3>
+                            <p class="text-xs text-slate-400">Avanza nei passi per comporre la funzione C++</p>
                         </div>
 
-                        <div class="flex justify-between pt-4 border-t border-slate-800">
-                            <button onclick="prevEsitoStep()" id="btn-prev-step" class="bg-slate-700 hover:bg-slate-600 disabled:opacity-40 text-xs px-3 py-2 rounded font-semibold transition flex items-center">
-                                <i class="fa-solid fa-arrow-left mr-1"></i> Precedente
+                        <!-- Indicatori di Progress -->
+                        <div class="flex items-center space-x-2">
+                            <button onclick="setEsitoStep(1)" id="step-btn-1" class="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center transition">1</button>
+                            <div class="w-4 h-0.5 bg-slate-700"></div>
+                            <button onclick="setEsitoStep(2)" id="step-btn-2" class="w-8 h-8 rounded-full bg-slate-700 text-slate-400 font-bold text-xs flex items-center justify-center transition">2</button>
+                            <div class="w-4 h-0.5 bg-slate-700"></div>
+                            <button onclick="setEsitoStep(3)" id="step-btn-3" class="w-8 h-8 rounded-full bg-slate-700 text-slate-400 font-bold text-xs flex items-center justify-center transition">3</button>
+                            <div class="w-4 h-0.5 bg-slate-700"></div>
+                            <button onclick="setEsitoStep(4)" id="step-btn-4" class="w-8 h-8 rounded-full bg-slate-700 text-slate-400 font-bold text-xs flex items-center justify-center transition">4</button>
+                        </div>
+                    </div>
+
+                    <!-- Schede dei singoli Passi -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                        <!-- Spiegazione del Passo Corrente -->
+                        <div class="lg:col-span-5 bg-slate-900 p-5 rounded-lg border border-slate-700 space-y-4">
+                            <div id="esito-step-desc">
+                                <!-- Popolato dinamicamente da JS -->
+                            </div>
+
+                            <div class="flex justify-between pt-4 border-t border-slate-800">
+                                <button onclick="prevEsitoStep()" id="btn-prev-step" class="bg-slate-700 hover:bg-slate-600 disabled:opacity-40 text-xs px-3 py-2 rounded font-semibold transition flex items-center">
+                                    <i class="fa-solid fa-arrow-left mr-1"></i> Precedente
+                                </button>
+                                <button onclick="nextEsitoStep()" id="btn-next-step-esito" class="bg-blue-600 hover:bg-blue-500 text-xs px-4 py-2 rounded font-semibold transition flex items-center">
+                                    Prossimo Passo <i class="fa-solid fa-arrow-right ml-1"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Editor Codice Progressivo -->
+                        <div class="lg:col-span-7 bg-slate-950 rounded-lg border border-slate-800 overflow-hidden shadow-inner">
+                            <div class="bg-slate-900 px-4 py-2 border-b border-slate-800 flex justify-between items-center text-xs text-slate-400">
+                                <span class="font-mono text-emerald-400"><i class="fa-solid fa-code mr-2"></i>CalcolaEsito.cpp (Anteprima Dinamica)</span>
+                                <span id="step-badge" class="bg-blue-900/60 text-blue-300 px-2 py-0.5 rounded text-[10px] font-mono">Passo 1 di 4</span>
+                            </div>
+                            <div class="p-4 text-xs font-mono">
+                                <pre><code id="esito-code-display" class="language-cpp"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tester Interattivo dell'Esito -->
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                    <h3 class="text-lg font-bold text-slate-200 mb-4 flex items-center">
+                        <i class="fa-solid fa-vial text-purple-400 mr-2"></i> Test della Funzione Completa
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Inserisci i voti dell'alunno (separati da virgola):</label>
+                            <input type="text" id="esito-test-voti" value="5, 4, 7, 3, 5" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500 mb-3">
+                            <button onclick="testCalcolaEsito()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold py-2 rounded text-sm transition shadow">
+                                Esegui CalcolaEsito()
                             </button>
-                            <button onclick="nextEsitoStep()" id="btn-next-step-esito" class="bg-blue-600 hover:bg-blue-500 text-xs px-4 py-2 rounded font-semibold transition flex items-center">
-                                Prossimo Passo <i class="fa-solid fa-arrow-right ml-1"></i>
-                            </button>
                         </div>
-                    </div>
 
-                    <!-- Editor Codice Progressivo -->
-                    <div class="lg:col-span-7 bg-slate-950 rounded-lg border border-slate-800 overflow-hidden shadow-inner">
-                        <div class="bg-slate-900 px-4 py-2 border-b border-slate-800 flex justify-between items-center text-xs text-slate-400">
-                            <span class="font-mono text-emerald-400"><i class="fa-solid fa-code mr-2"></i>CalcolaEsito.cpp (Anteprima Dinamica)</span>
-                            <span id="step-badge" class="bg-blue-900/60 text-blue-300 px-2 py-0.5 rounded text-[10px] font-mono">Passo 1 di 4</span>
-                        </div>
-                        <div class="p-4 text-xs font-mono">
-                            <pre><code id="esito-code-display" class="language-cpp"></code></pre>
+                        <div id="esito-result-box" class="bg-slate-900 p-4 rounded-lg border border-slate-700 flex flex-col justify-center items-center text-center">
+                            <span class="text-xs text-slate-400 uppercase tracking-wider mb-1">Risultato Restituito (`return`)</span>
+                            <div id="esito-badge" class="text-xl font-bold py-1 px-4 rounded-full bg-slate-800 text-slate-400 my-2">
+                                -
+                            </div>
+                            <p id="esito-details" class="text-xs text-slate-400 mt-1">Inserisci i voti e clicca su Esegui.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Tester Interattivo dell'Esito -->
-            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
-                <h3 class="text-lg font-bold text-slate-200 mb-4 flex items-center">
-                    <i class="fa-solid fa-vial text-purple-400 mr-2"></i> Test della Funzione Completa
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Inserisci i voti dell'alunno (separati da virgola):</label>
-                        <input type="text" id="esito-test-voti" value="5, 4, 7, 3, 5" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500 mb-3">
-                        <button onclick="testCalcolaEsito()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold py-2 rounded text-sm transition shadow">
-                            Esegui CalcolaEsito()
-                        </button>
-                    </div>
-
-                    <div id="esito-result-box" class="bg-slate-900 p-4 rounded-lg border border-slate-700 flex flex-col justify-center items-center text-center">
-                        <span class="text-xs text-slate-400 uppercase tracking-wider mb-1">Risultato Restituito (`return`)</span>
-                        <div id="esito-badge" class="text-xl font-bold py-1 px-4 rounded-full bg-slate-800 text-slate-400 my-2">
-                            -
-                        </div>
-                        <p id="esito-details" class="text-xs text-slate-400 mt-1">Inserisci i voti e clicca su Esegui.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </main>
+        </main>
+    </div>
 
     <!-- Footer -->
-    <footer class="bg-slate-800 border-t border-slate-700 py-4 text-center text-xs text-slate-500">
-        <p>WebApp Didattica per la Lezione di Informatica: Vettori nelle Struct in C++</p>
+    <footer class="bg-slate-800 border-t border-slate-700 py-4 text-center text-xs text-slate-500 mt-auto">
+        <p>Piattaforma Didattica di Informatica: Vettori e Strutture in C++</p>
     </footer>
 
     <!-- JavaScript Application Logic -->
     <script>
-        // Tab Switching Logic (disponibile nel global scope)
+        // Navigation Handler tra Index e Lezione 1
+        function showHome() {
+            document.getElementById('view-index').classList.remove('hidden');
+            document.getElementById('view-lesson1').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openLesson1() {
+            document.getElementById('view-index').classList.add('hidden');
+            document.getElementById('view-lesson1').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Re-inizializza highlight.js per sicurezza
+            hljs.highlightAll();
+        }
+
+        // Tab Switching inside Lesson 1
         function switchTab(tabId) {
             document.getElementById('content-teoria').classList.add('hidden');
             document.getElementById('content-riempi').classList.add('hidden');
@@ -511,35 +794,35 @@ struct T_FATTURA {
         const esitoStepsData = {
             1: {
                 title: "1. Intestazione e Inizializzazione",
-                desc: '<p class="text-slate-300 text-xs leading-relaxed mb-3">Per prima cosa definiamo l\'<strong>intestazione della funzione</strong>:</p>' +
-                       '<ul class="list-disc list-inside text-xs text-slate-400 space-y-1 mb-3">' +
-                        '<li>Tipo restituito: <code class="text-pink-400">string</code> (restituisce "PROMOSSO", "NON PROMOSSO" o "SOSPESO").</li>' +
-                        '<li>Parametro: <code class="text-amber-400">T_ALUNNO e</code> (passato per valore).</li>' +
-                       '</ul>' +
-                       '<p class="text-slate-300 text-xs leading-relaxed">Inizializziamo poi un <strong>contatore delle insufficienze</strong> <code class="text-emerald-400">c_ins = 0</code> e l\'indice <code class="text-cyan-400">i</code> per scorrere il vettore.</p>',
-                code: 'string CalcolaEsito(T_ALUNNO e) {\n    int i;\n    int c_ins = 0; // Contatore insufficienze (< 6)\n\n    // ... i prossimi passi verranno aggiunti qui ...\n}'
+                desc: `<p class="text-slate-300 text-xs leading-relaxed mb-3">Definiamo prima di tutto l'<strong>intestazione della funzione</strong>:</p>
+                       <ul class="list-disc list-inside text-xs text-slate-400 space-y-1 mb-3">
+                        <li>Tipo restituito: <code class="text-pink-400">string</code> (restituisce "PROMOSSO", "NON PROMOSSO" o "SOSPESO").</li>
+                        <li>Parametro: <code class="text-amber-400">T_ALUNNO e</code> (passato per valore).</li>
+                       </ul>
+                       <p class="text-slate-300 text-xs leading-relaxed">Inizializziamo un <strong>contatore per le insufficienze</strong> <code class="text-emerald-400">c_ins = 0</code> e l'indice <code class="text-cyan-400">i</code> per scandire il vettore.</p>`,
+                code: `string CalcolaEsito(T_ALUNNO e) {\n    int i;\n    int c_ins = 0; // Contatore insufficienze (< 6)\n\n    // ... i prossimi passi verranno aggiunti qui ...\n}`
             },
             2: {
                 title: "2. Scansione del Vettore Voti",
-                desc: '<p class="text-slate-300 text-xs leading-relaxed mb-3">Dobbiamo contare quanti voti sufficienti o insufficienti ha lo studente.</p>' +
-                       '<p class="text-slate-300 text-xs leading-relaxed mb-3">Utilizziamo un ciclo <code class="text-blue-400">for</code> che va dall\'indice <code class="text-amber-400">i = 0</code> fino a <code class="text-amber-400">e.nv - 1</code> per esaminare tutti i voti effettivamente memorizzati nell\'alunno.</p>',
-                code: 'string CalcolaEsito(T_ALUNNO e) {\n    int i;\n    int c_ins = 0; // Contatore insufficienze (< 6)\n\n    // Scansione del vettore voti\n    for(i = 0; i < e.nv; i++) {\n        // ... controllo insufficienza ...\n    }\n\n    // ... valutazione finale ...\n}'
+                desc: `<p class="text-slate-300 text-xs leading-relaxed mb-3">Dobbiamo verificare ciascun voto memorizzato per l'alunno.</p>
+                       <p class="text-slate-300 text-xs leading-relaxed mb-3">Utilizziamo un ciclo <code class="text-blue-400">for</code> che va da <code class="text-amber-400">i = 0</code> fino a <code class="text-amber-400">e.nv - 1</code> per esaminare tutti i voti effettivamente presenti.</p>`,
+                code: `string CalcolaEsito(T_ALUNNO e) {\n    int i;\n    int c_ins = 0; // Contatore insufficienze (< 6)\n\n    // Scansione del vettore voti\n    for(i = 0; i < e.nv; i++) {\n        // ... controllo insufficienza ...\n    }\n\n    // ... valutazione finale ...\n}`
             },
             3: {
                 title: "3. Conteggio delle Insufficienze",
-                desc: '<p class="text-slate-300 text-xs leading-relaxed mb-3">All\'interno del ciclo for, aggiungiamo un controllo condizionale <code class="text-blue-400">if</code>:</p>' +
-                       '<p class="text-xs text-slate-400 mb-3 bg-slate-950 p-2 rounded">Se il voto corrente <code class="text-cyan-300">e.voti[i] &lt; 6</code>, incrementiamo il contatore <code class="text-emerald-400">c_ins++</code>.</p>',
-                code: 'string CalcolaEsito(T_ALUNNO e) {\n    int i;\n    int c_ins = 0; // Contatore insufficienze (< 6)\n\n    // Scansione del vettore voti\n    for(i = 0; i < e.nv; i++) {\n        if(e.voti[i] < 6) {\n            c_ins++; // Incrementa se voto insufficiente\n        }\n    }\n\n    // ... valutazione finale dell\'esito ...\n}'
+                desc: `<p class="text-slate-300 text-xs leading-relaxed mb-3">All'interno del ciclo for inseriamo la condizione di controllo <code class="text-blue-400">if</code>:</p>
+                       <p class="text-xs text-slate-400 mb-3 bg-slate-950 p-2 rounded">Se il voto corrente <code class="text-cyan-300">e.voti[i] &lt; 6</code>, incrementiamo il contatore <code class="text-emerald-400">c_ins++</code>.</p>`,
+                code: `string CalcolaEsito(T_ALUNNO e) {\n    int i;\n    int c_ins = 0; // Contatore insufficienze (< 6)\n\n    // Scansione del vettore voti\n    for(i = 0; i < e.nv; i++) {\n        if(e.voti[i] < 6) {\n            c_ins++; // Incrementa se voto insufficiente\n        }\n    }\n\n    // ... valutazione finale dell'esito ...\n}`
             },
             4: {
                 title: "4. Valutazione dell'Esito Finale",
-                desc: '<p class="text-slate-300 text-xs leading-relaxed mb-3">Terminato il ciclo, applichiamo la logica richiesta dalla lavagna:</p>' +
-                       '<ul class="list-disc list-inside text-xs text-slate-300 space-y-1 mb-3">' +
-                        '<li><code class="text-emerald-400">if (c_ins == 0)</code> &rarr; <code class="text-emerald-300">return "PROMOSSO";</code></li>' +
-                        '<li><code class="text-red-400">else if (c_ins &gt; 3)</code> &rarr; <code class="text-red-300">return "NON PROMOSSO";</code></li>' +
-                        '<li><code class="text-amber-400">else</code> &rarr; <code class="text-amber-300">return "SOSPESO";</code> (tra 1 e 3 insufficienze)</li>' +
-                       '</ul>',
-                code: 'string CalcolaEsito(T_ALUNNO e) {\n    int i;\n    int c_ins = 0; // Contatore insufficienze (< 6)\n\n    // Scansione del vettore voti\n    for(i = 0; i < e.nv; i++) {\n        if(e.voti[i] < 6) {\n            c_ins++;\n        }\n    }\n\n    // Valutazione finale in base a c_ins\n    if(c_ins == 0) {\n        return "PROMOSSO";\n    } \n    else if(c_ins > 3) {\n        return "NON PROMOSSO";\n    } \n    else {\n        return "SOSPESO"; // 1, 2 o 3 insufficienze\n    }\n}'
+                desc: `<p class="text-slate-300 text-xs leading-relaxed mb-3">Terminato il ciclo, applichiamo i criteri dello scrutinio:</p>
+                       <ul class="list-disc list-inside text-xs text-slate-300 space-y-1 mb-3">
+                        <li><code class="text-emerald-400">if (c_ins == 0)</code> &rarr; <code class="text-emerald-300">return "PROMOSSO";</code></li>
+                        <li><code class="text-red-400">else if (c_ins &gt; 3)</code> &rarr; <code class="text-red-300">return "NON PROMOSSO";</code></li>
+                        <li><code class="text-amber-400">else</code> &rarr; <code class="text-amber-300">return "SOSPESO";</code> (tra 1 e 3 insufficienze)</li>
+                       </ul>`,
+                code: `string CalcolaEsito(T_ALUNNO e) {\n    int i;\n    int c_ins = 0; // Contatore insufficienze (< 6)\n\n    // Scansione del vettore voti\n    for(i = 0; i < e.nv; i++) {\n        if(e.voti[i] < 6) {\n            c_ins++;\n        }\n    }\n\n    // Valutazione finale in base a c_ins\n    if(c_ins == 0) {\n        return "PROMOSSO";\n    } \n    else if(c_ins > 3) {\n        return "NON PROMOSSO";\n    } \n    else {\n        return "SOSPESO"; // 1, 2 o 3 insufficienze\n    }\n}`
             }
         };
 
