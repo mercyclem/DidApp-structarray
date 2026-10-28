@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +20,9 @@
             border-bottom: 3px solid #3b82f6;
             color: #3b82f6;
             font-weight: 600;
+        }
+        .memory-cell {
+            transition: all 0.5s ease;
         }
     </style>
 </head>
@@ -78,7 +81,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-4">
                 
-                <!-- CARD LEZIONE 1 (COLLEGATA A struct.html) -->
+                <!-- CARD LEZIONE 1 (STRUCT NATIVA COMPLETA) -->
                 <div class="bg-slate-800 hover:bg-slate-750 border border-blue-500/50 hover:border-blue-400 rounded-xl p-5 shadow-lg transition-all duration-200 flex flex-col justify-between group">
                     <div>
                         <div class="flex items-center justify-between mb-3">
@@ -86,14 +89,14 @@
                             <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full font-semibold">Attiva</span>
                         </div>
                         <h4 class="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">
-                            1. Teoria sui Record
+                            1. Le Struct in C++ (struct.html)
                         </h4>
                         <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-                            Introduzione al concetto di Record/Struct in C++: definizione di tipi di dati eterogenei personalizzati, dichiarazione di variabili, operatore di accesso punto (`.`) e allocazione in memoria.
+                            Guida interattiva completa ai Record: teoria, esempi reali, confronto assegnazione in blocco vs campo per campo, simulazione di RAM passo-passo e quiz interattivo.
                         </p>
                     </div>
                     <div class="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between">
-                        <span class="text-xs text-slate-400"><i class="fa-solid fa-cubes text-blue-400 mr-1"></i> Basi Struct</span>
+                        <span class="text-xs text-slate-400"><i class="fa-solid fa-cubes text-blue-400 mr-1"></i> Basi Struct & RAM</span>
                         <a href="struct.html" onclick="event.preventDefault(); openLessonStruct();" class="inline-flex items-center text-xs font-semibold text-blue-400 hover:text-blue-300">
                             Apri Lezione <i class="fa-solid fa-arrow-right ml-1.5 transition-transform group-hover:translate-x-1"></i>
                         </a>
@@ -138,7 +141,7 @@
                     </div>
                     <div class="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between">
                         <span class="text-xs text-slate-500"><i class="fa-solid fa-folder mr-1"></i> Modulo C++</span>
-                        <button onclick="alert('Puoi personalizzare questo pulsante inserendo il link alla Lezione 3')" class="text-xs font-semibold text-slate-400 hover:text-white">
+                        <button class="text-xs font-semibold text-slate-400 hover:text-white">
                             Apri Lezione <i class="fa-solid fa-arrow-right ml-1"></i>
                         </button>
                     </div>
@@ -160,7 +163,7 @@
                     </div>
                     <div class="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between">
                         <span class="text-xs text-slate-500"><i class="fa-solid fa-folder mr-1"></i> Modulo C++</span>
-                        <button onclick="alert('Puoi personalizzare questo pulsante inserendo il link alla Lezione 4')" class="text-xs font-semibold text-slate-400 hover:text-white">
+                        <button class="text-xs font-semibold text-slate-400 hover:text-white">
                             Apri Lezione <i class="fa-solid fa-arrow-right ml-1"></i>
                         </button>
                     </div>
@@ -182,7 +185,7 @@
                     </div>
                     <div class="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between">
                         <span class="text-xs text-slate-500"><i class="fa-solid fa-folder mr-1"></i> Modulo C++</span>
-                        <button onclick="alert('Puoi personalizzare questo pulsante inserendo il link alla Lezione 5')" class="text-xs font-semibold text-slate-400 hover:text-white">
+                        <button class="text-xs font-semibold text-slate-400 hover:text-white">
                             Apri Lezione <i class="fa-solid fa-arrow-right ml-1"></i>
                         </button>
                     </div>
@@ -204,7 +207,7 @@
                     </div>
                     <div class="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between">
                         <span class="text-xs text-slate-500"><i class="fa-solid fa-folder mr-1"></i> Modulo C++</span>
-                        <button onclick="alert('Puoi personalizzare questo pulsante inserendo il link alla Lezione 6')" class="text-xs font-semibold text-slate-400 hover:text-white">
+                        <button class="text-xs font-semibold text-slate-400 hover:text-white">
                             Apri Lezione <i class="fa-solid fa-arrow-right ml-1"></i>
                         </button>
                     </div>
@@ -226,7 +229,7 @@
                     </div>
                     <div class="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between">
                         <span class="text-xs text-slate-500"><i class="fa-solid fa-folder mr-1"></i> Modulo C++</span>
-                        <button onclick="alert('Puoi personalizzare questo pulsante inserendo il link alla Lezione 7')" class="text-xs font-semibold text-slate-400 hover:text-white">
+                        <button class="text-xs font-semibold text-slate-400 hover:text-white">
                             Apri Lezione <i class="fa-solid fa-arrow-right ml-1"></i>
                         </button>
                     </div>
@@ -248,7 +251,7 @@
                     </div>
                     <div class="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between">
                         <span class="text-xs text-slate-500"><i class="fa-solid fa-folder mr-1"></i> Modulo C++</span>
-                        <button onclick="alert('Puoi personalizzare questo pulsante inserendo il link alla Lezione 8')" class="text-xs font-semibold text-slate-400 hover:text-white">
+                        <button class="text-xs font-semibold text-slate-400 hover:text-white">
                             Apri Lezione <i class="fa-solid fa-arrow-right ml-1"></i>
                         </button>
                     </div>
@@ -270,7 +273,7 @@
                     </div>
                     <div class="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between">
                         <span class="text-xs text-slate-500"><i class="fa-solid fa-folder mr-1"></i> Modulo C++</span>
-                        <button onclick="alert('Puoi personalizzare questo pulsante inserendo il link alla Lezione 9')" class="text-xs font-semibold text-slate-400 hover:text-white">
+                        <button class="text-xs font-semibold text-slate-400 hover:text-white">
                             Apri Lezione <i class="fa-solid fa-arrow-right ml-1"></i>
                         </button>
                     </div>
@@ -292,7 +295,7 @@
                     </div>
                     <div class="mt-5 pt-4 border-t border-slate-700/60 flex items-center justify-between">
                         <span class="text-xs text-slate-500"><i class="fa-solid fa-folder mr-1"></i> Modulo C++</span>
-                        <button onclick="alert('Puoi personalizzare questo pulsante inserendo il link alla Lezione 10')" class="text-xs font-semibold text-slate-400 hover:text-white">
+                        <button class="text-xs font-semibold text-slate-400 hover:text-white">
                             Apri Lezione <i class="fa-solid fa-arrow-right ml-1"></i>
                         </button>
                     </div>
@@ -302,7 +305,7 @@
         </div>
     </div>
 
-    <!-- VISTA 2: LEZIONE 1 (structarray.html) -->
+    <!-- VISTA 2: LEZIONE 2 (structarray.html) -->
     <div id="view-lesson1" class="hidden flex-grow flex-col">
         <!-- Breadcrumb / Torna all'indice -->
         <div class="bg-slate-850 border-b border-slate-700/60 py-2.5 px-4 bg-slate-800/50">
@@ -318,7 +321,7 @@
             </div>
         </div>
 
-        <!-- Main Navigation Tabs della Lezione 1 -->
+        <!-- Main Navigation Tabs della Lezione 2 -->
         <div class="bg-slate-800 border-b border-slate-700 shadow-inner">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <nav class="flex space-x-4 overflow-x-auto" id="tabs">
@@ -338,7 +341,7 @@
             </div>
         </div>
 
-        <!-- Area Contenuti della Lezione 1 -->
+        <!-- Area Contenuti della Lezione 2 -->
         <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
             <!-- TAB 1: SCHEDA TEORIA -->
@@ -748,7 +751,7 @@ struct T_FATTURA {
         </main>
     </div>
 
-    <!-- VISTA 3: LEZIONE 1 NATIVA (struct.html) -->
+    <!-- VISTA 3: LEZIONE 1 COMPLETA (struct.html INTEGRATO) -->
     <div id="view-lesson-struct" class="hidden flex-grow flex-col">
         <!-- Breadcrumb -->
         <div class="bg-slate-850 border-b border-slate-700/60 py-2.5 px-4 bg-slate-800/50">
@@ -764,65 +767,308 @@ struct T_FATTURA {
             </div>
         </div>
 
-        <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
-                <h2 class="text-2xl font-bold text-blue-400 mb-4 flex items-center">
-                    <i class="fa-solid fa-cubes text-amber-400 mr-3"></i>
-                    Teoria sui Record (`struct`) in C++
-                </h2>
-                <p class="text-slate-300 leading-relaxed mb-4 text-sm">
-                    In programmazione, un <strong>Record</strong> (in C++ chiamato <code class="bg-slate-900 px-2 py-1 rounded text-pink-400">struct</code>) è una struttura dati composta che consente di raggruppare sotto un unico nome elementi di tipo diverso (detti <i>campi</i> o <i>membri</i>).
-                </p>
+        <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+            
+            <!-- Hero / Intro -->
+            <section class="bg-gradient-to-r from-slate-800 to-slate-800/80 rounded-2xl p-6 sm:p-8 border border-slate-700 shadow-xl">
+                <div class="max-w-3xl">
+                    <span class="inline-block px-3 py-1 bg-blue-500/10 text-blue-400 text-xs font-semibold rounded-full border border-blue-500/20 mb-3">Materiale Didattico integrativo</span>
+                    <h2 class="text-3xl font-extrabold text-white mb-3">Guida Pratica alle Variabili Record (Struct)</h2>
+                    <p class="text-slate-300 text-base leading-relaxed mb-6">
+                        Mentre le variabili semplici (es. <code class="bg-slate-900 px-1.5 py-0.5 rounded text-blue-300 font-mono text-sm">int</code>, <code class="bg-slate-900 px-1.5 py-0.5 rounded text-blue-300 font-mono text-sm">string</code>) contengono un singolo valore, una <strong>Struct</strong> permette di raggruppare più informazioni correlate in un'unica entità custom.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="#simulator" onclick="scrollToLesson1Section('simulator')" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2.5 rounded-lg transition inline-flex items-center space-x-2 text-sm shadow-lg shadow-blue-600/20">
+                            <i class="fa-solid fa-play"></i>
+                            <span>Avvia Simulazione Memoria</span>
+                        </a>
+                        <a href="#quiz" onclick="scrollToLesson1Section('quiz')" class="bg-slate-700 hover:bg-slate-600 text-slate-200 font-medium px-4 py-2.5 rounded-lg transition inline-flex items-center space-x-2 text-sm">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <span>Mettiti alla prova</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                    <div class="bg-slate-900/80 p-5 rounded-lg border border-slate-700">
-                        <h3 class="font-semibold text-emerald-400 text-base mb-2 flex items-center">
-                            <i class="fa-solid fa-lightbulb mr-2"></i> Concetto Principale
+            <!-- SECTION 1: TEORIA & ESEMPI REALI -->
+            <section id="theory" class="space-y-6">
+                <div class="border-b border-slate-700 pb-3">
+                    <h3 class="text-2xl font-bold text-white flex items-center gap-2">
+                        <span class="text-blue-500">1.</span> Cos'è un Tipo Record (Struct)?
+                    </h3>
+                </div>
+
+                <!-- Card Esempi di Record -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 hover:border-slate-600 transition">
+                        <div class="text-blue-400 text-2xl mb-3"><i class="fa-solid fa-address-book"></i></div>
+                        <h4 class="font-bold text-lg text-white mb-2">Contatto in Rubrica</h4>
+                        <p class="text-slate-400 text-sm">Contiene nome, cognome, numero di telefono, e-mail. Più informazioni distinte per una sola persona.</p>
+                    </div>
+                    <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 hover:border-slate-600 transition">
+                        <div class="text-emerald-400 text-2xl mb-3"><i class="fa-solid fa-hospital-user"></i></div>
+                        <h4 class="font-bold text-lg text-white mb-2">Cartella Paziente</h4>
+                        <p class="text-slate-400 text-sm">Numero caso, genere, età, altezza e peso. Dati di tipo diverso (<code class="font-mono text-emerald-300">int</code>, <code class="font-mono text-emerald-300">float</code>, <code class="font-mono text-emerald-300">string</code>) uniti.</p>
+                    </div>
+                    <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 hover:border-slate-600 transition">
+                        <div class="text-amber-400 text-2xl mb-3"><i class="fa-solid fa-boxes-stacked"></i></div>
+                        <h4 class="font-bold text-lg text-white mb-2">Prodotto in Magazzino</h4>
+                        <p class="text-slate-400 text-sm">Codice a barre, descrizione, quantità disponibile e prezzo unitario.</p>
+                    </div>
+                </div>
+
+                <!-- Sintassi C++ -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+                    <!-- Dichiarazione Tipo -->
+                    <div class="bg-slate-800/90 rounded-xl p-5 border border-slate-700 space-y-4">
+                        <h4 class="font-bold text-lg text-white flex items-center gap-2">
+                            <i class="fa-solid fa-code text-blue-400"></i> Dichiarazione della Struct
+                        </h4>
+                        <p class="text-slate-300 text-sm">
+                            Definiamo il nuovo tipo di dato <code class="text-amber-400 font-mono font-bold">T_PERSONA</code> specificando i suoi campi interni:
+                        </p>
+                        <div class="bg-slate-950 p-4 rounded-lg font-mono text-sm text-slate-200 overflow-x-auto border border-slate-800">
+                            <span class="text-blue-400">struct</span> <span class="text-amber-300 font-bold">T_PERSONA</span> {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-emerald-400">string</span> cognome;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-emerald-400">string</span> nome;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-emerald-400">int</span> eta;<br>
+                            }; <span class="text-slate-500">// Ricorda il punto e virgola finale!</span>
+                        </div>
+                    </div>
+
+                    <!-- Istanziazione e Punto -->
+                    <div class="bg-slate-800/90 rounded-xl p-5 border border-slate-700 space-y-4">
+                        <h4 class="font-bold text-lg text-white flex items-center gap-2">
+                            <i class="fa-solid fa-arrow-pointer text-amber-400"></i> Creazione e Accesso ai Campi
+                        </h4>
+                        <p class="text-slate-300 text-sm">
+                            Creiamo le variabili <code class="text-emerald-300 font-mono font-bold">io</code> e <code class="text-purple-300 font-mono font-bold">tu</code> e usiamo l'<strong>operatore punto (`.`)</strong> per accedere ai singoli campi:
+                        </p>
+                        <div class="bg-slate-950 p-4 rounded-lg font-mono text-sm text-slate-200 overflow-x-auto border border-slate-800">
+                            <span class="text-slate-500">// Dichiarazione variabili record</span><br>
+                            <span class="text-amber-300">T_PERSONA</span> <span class="text-emerald-300 font-bold">io</span>;<br>
+                            <span class="text-amber-300">T_PERSONA</span> <span class="text-purple-300 font-bold">tu</span>;<br><br>
+                            <span class="text-slate-500">// Accesso campo per campo: variabile.campo</span><br>
+                            <span class="text-emerald-300">io</span>.<span class="text-cyan-300">cognome</span> = <span class="text-orange-300">"Rossi"</span>;<br>
+                            <span class="text-purple-300">tu</span>.<span class="text-cyan-300">eta</span> = <span class="text-orange-300">18</span>;
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: SIMULATORE ESECUZIONE PASSO-PASSO -->
+            <section id="simulator" class="space-y-6">
+                <div class="border-b border-slate-700 pb-3 flex justify-between items-end flex-wrap gap-2">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white flex items-center gap-2">
+                            <span class="text-blue-500">2.</span> Simulatore del Codice & Memoria RAM
                         </h3>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            Mentre un array (vettore) contiene una sequenza di elementi tutti dello stesso tipo, una <code class="text-pink-300">struct</code> permette di aggregare variabili di tipo eterogeneo (interi, stringhe, float, ecc.), ciascuna identificata da un nome univoco.
+                        <p class="text-slate-400 text-sm">Esegui il codice passo-passo e osserva come cambiano le celle di memoria in tempo reale.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button id="btn-prev" onclick="stepSimulator(-1)" class="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium rounded-lg disabled:opacity-40 disabled:cursor-not-allowed">
+                            <i class="fa-solid fa-step-backward mr-1"></i> Indietro
+                        </button>
+                        <button id="btn-next" onclick="stepSimulator(1)" class="px-4 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium rounded-lg shadow-md shadow-blue-600/30">
+                            Avanti / Passo <i class="fa-solid fa-step-forward ml-1"></i>
+                        </button>
+                        <button onclick="resetSimulator()" class="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-slate-300 text-sm font-medium rounded-lg">
+                            <i class="fa-solid fa-rotate-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Interactive Workspace -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    
+                    <!-- Left: C++ Source Code -->
+                    <div class="lg:col-span-6 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden shadow-xl flex flex-col">
+                        <div class="bg-slate-900 px-4 py-2 border-b border-slate-800 flex justify-between items-center text-xs font-mono text-slate-400">
+                            <span><i class="fa-regular fa-file-code mr-1"></i> programma_record.cpp</span>
+                            <span id="step-indicator" class="text-blue-400 font-bold">Passo 1 di 9</span>
+                        </div>
+                        <div class="p-4 font-mono text-sm text-slate-300 space-y-1 overflow-x-auto flex-grow" id="code-container">
+                            <div id="line-1" class="px-2 py-0.5 rounded flex"><span class="w-8 text-slate-600 select-none">1</span><span><span class="text-blue-400">struct</span> <span class="text-amber-300">T_PERSONA</span> {</span></div>
+                            <div id="line-2" class="px-2 py-0.5 rounded flex"><span class="w-8 text-slate-600 select-none">2</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-emerald-400">string</span> cognome;</span></div>
+                            <div id="line-3" class="px-2 py-0.5 rounded flex"><span class="w-8 text-slate-600 select-none">3</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-emerald-400">string</span> nome;</span></div>
+                            <div id="line-4" class="px-2 py-0.5 rounded flex"><span class="w-8 text-slate-600 select-none">4</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-emerald-400">int</span> eta;</span></div>
+                            <div id="line-5" class="px-2 py-0.5 rounded flex"><span class="w-8 text-slate-600 select-none">5</span><span>};</span></div>
+                            <div id="line-6" class="px-2 py-0.5 rounded flex"><span class="w-8 text-slate-600 select-none">6</span><span></span></div>
+                            <div id="line-7" class="px-2 py-0.5 rounded flex"><span class="w-8 text-slate-600 select-none">7</span><span><span class="text-blue-400">int</span> main() {</span></div>
+                            <div id="line-8" class="px-2 py-0.5 rounded flex"><span class="w-8 text-slate-600 select-none">8</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-amber-300">T_PERSONA</span> <span class="text-emerald-300">io</span>, <span class="text-purple-300">tu</span>;</span></div>
+                            <div id="line-9" class="px-2 py-0.5 rounded flex"><span class="w-8 text-slate-600 select-none">9</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">cin</span> &gt;&gt; <span class="text-emerald-300">io</span>.<span class="text-cyan-300">nome</span>;</span></div>
+                            <div id="line-10" class="px-2 py-0.5 rounded flex"><span class="w-8 text-slate-600 select-none">10</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">cin</span> &gt;&gt; <span class="text-emerald-300">io</span>.<span class="text-cyan-300">cognome</span>;</span></div>
+                            <div id="line-11" class="px-2 py-0.5 rounded flex"><span class="w-8 text-slate-600 select-none">11</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">cin</span> &gt;&gt; <span class="text-emerald-300">io</span>.<span class="text-cyan-300">eta</span>;</span></div>
+                            <div id="line-12" class="px-2 py-0.5 rounded flex"><span class="w-8 text-slate-600 select-none">12</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">tu</span> = <span class="text-emerald-300">io</span>; <span class="text-slate-500">// Copia intera struct!</span></span></div>
+                            <div id="line-13" class="px-2 py-0.5 rounded flex"><span class="w-8 text-slate-600 select-none">13</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">cout</span> &lt;&lt; <span class="text-purple-300">tu</span>.<span class="text-cyan-300">nome</span> &lt;&lt; <span class="text-orange-300">" "</span> &lt;&lt; <span class="text-purple-300">tu</span>.<span class="text-cyan-300">cognome</span>;</span></div>
+                            <div id="line-14" class="px-2 py-0.5 rounded flex"><span class="w-8 text-slate-600 select-none">14</span><span>}</span></div>
+                        </div>
+                        <!-- Terminal Console output -->
+                        <div class="bg-black/80 border-t border-slate-800 p-3 font-mono text-xs">
+                            <div class="text-slate-500 mb-1 flex justify-between">
+                                <span><i class="fa-solid fa-terminal mr-1"></i> Console Output</span>
+                                <span class="text-emerald-400">Stato: In esecuzione</span>
+                            </div>
+                            <div id="terminal-output" class="text-slate-200 space-y-1 h-20 overflow-y-auto">
+                                <!-- Output dinamico inserito da JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Visual Memory RAM -->
+                    <div class="lg:col-span-6 bg-slate-800 rounded-xl p-5 border border-slate-700 flex flex-col justify-between shadow-xl">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="font-bold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-microchip text-emerald-400"></i> Rappresentazione Memoria RAM
+                                </h4>
+                                <span class="text-xs bg-slate-700 px-2 py-1 rounded text-slate-300">Tipo: <code class="text-amber-300">T_PERSONA</code></span>
+                            </div>
+
+                            <!-- Explanation Note -->
+                            <div id="explanation-box" class="mb-5 bg-blue-900/30 border border-blue-500/30 p-3 rounded-lg text-xs text-blue-200">
+                                Fai clic su <strong>"Avanti / Passo"</strong> per iniziare l'esecuzione del codice.
+                            </div>
+
+                            <!-- Variables Grid -->
+                            <div class="space-y-5">
+                                
+                                <!-- Variable IO -->
+                                <div class="border-2 border-emerald-500/40 rounded-xl p-4 bg-slate-900/60 transition-all">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <span class="font-mono font-bold text-emerald-400 text-lg flex items-center gap-2">
+                                            <i class="fa-regular fa-folder-open"></i> io
+                                        </span>
+                                        <span class="text-xs text-slate-400 font-mono">Indirizzo RAM: 0x7ffd1</span>
+                                    </div>
+                                    <div class="grid grid-cols-3 gap-2 font-mono text-center">
+                                        <div class="bg-slate-800 p-2 rounded border border-slate-700">
+                                            <div class="text-[10px] text-slate-400 uppercase">io.nome</div>
+                                            <div id="mem-io-nome" class="font-bold text-emerald-300 text-sm mt-1 memory-cell">---</div>
+                                        </div>
+                                        <div class="bg-slate-800 p-2 rounded border border-slate-700">
+                                            <div class="text-[10px] text-slate-400 uppercase">io.cognome</div>
+                                            <div id="mem-io-cognome" class="font-bold text-emerald-300 text-sm mt-1 memory-cell">---</div>
+                                        </div>
+                                        <div class="bg-slate-800 p-2 rounded border border-slate-700">
+                                            <div class="text-[10px] text-slate-400 uppercase">io.eta</div>
+                                            <div id="mem-io-eta" class="font-bold text-emerald-300 text-sm mt-1 memory-cell">---</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Variable TU -->
+                                <div class="border-2 border-purple-500/40 rounded-xl p-4 bg-slate-900/60 transition-all">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <span class="font-mono font-bold text-purple-400 text-lg flex items-center gap-2">
+                                            <i class="fa-regular fa-folder-open"></i> tu
+                                        </span>
+                                        <span class="text-xs text-slate-400 font-mono">Indirizzo RAM: 0x7ffd2</span>
+                                    </div>
+                                    <div class="grid grid-cols-3 gap-2 font-mono text-center">
+                                        <div class="bg-slate-800 p-2 rounded border border-slate-700">
+                                            <div class="text-[10px] text-slate-400 uppercase">tu.nome</div>
+                                            <div id="mem-tu-nome" class="font-bold text-purple-300 text-sm mt-1 memory-cell">---</div>
+                                        </div>
+                                        <div class="bg-slate-800 p-2 rounded border border-slate-700">
+                                            <div class="text-[10px] text-slate-400 uppercase">tu.cognome</div>
+                                            <div id="mem-tu-cognome" class="font-bold text-purple-300 text-sm mt-1 memory-cell">---</div>
+                                        </div>
+                                        <div class="bg-slate-800 p-2 rounded border border-slate-700">
+                                            <div class="text-[10px] text-slate-400 uppercase">tu.eta</div>
+                                            <div id="mem-tu-eta" class="font-bold text-purple-300 text-sm mt-1 memory-cell">---</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-slate-700 text-xs text-slate-400 flex items-center justify-between">
+                            <span><i class="fa-solid fa-circle-info text-blue-400"></i> Notazione: <code class="text-slate-200">variabile.campo</code></span>
+                            <span>Dimensione record: ~64 bytes</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SECTION 3: ASSEGNAZIONE BLOCCO VS CAMPO PER CAMPO -->
+            <section id="assignment" class="space-y-6">
+                <div class="border-b border-slate-700 pb-3">
+                    <h3 class="text-2xl font-bold text-white flex items-center gap-2">
+                        <span class="text-blue-500">3.</span> Confronto Operazioni di Assegnazione
+                    </h3>
+                    <p class="text-slate-400 text-sm">Esistono due modi equivalenti per copiare i dati da un record all'altro.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Modo 1: Per intero blocco -->
+                    <div class="bg-slate-800 rounded-xl p-6 border border-emerald-500/30 relative overflow-hidden shadow-lg">
+                        <div class="absolute top-0 right-0 bg-emerald-500 text-slate-950 font-bold text-[10px] px-3 py-1 rounded-bl-lg uppercase tracking-wider">Metodo Consigliato</div>
+                        <h4 class="text-lg font-bold text-emerald-400 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-bolt"></i> Per Intero Blocco
+                        </h4>
+                        <p class="text-slate-300 text-sm mb-4">Copia automaticamente tutti i campi della struct in un'unica istruzione veloce.</p>
+                        <div class="bg-slate-950 p-4 rounded-lg font-mono text-sm text-emerald-300 mb-3 border border-slate-800">
+                            tu = io;
+                        </div>
+                        <p class="text-slate-400 text-xs">
+                            <strong>Cosa succede dietro le quinte:</strong> Il compilatore C++ effettua una copia bit a bit di tutti i campi compresi nella struct.
                         </p>
                     </div>
 
-                    <div class="bg-slate-900/80 p-5 rounded-lg border border-slate-700">
-                        <h3 class="font-semibold text-purple-400 text-base mb-2 flex items-center">
-                            <i class="fa-solid fa-[#3b82f6] fa-circle-dot mr-2"></i> Operatore Punto (`.`)
-                        </h3>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            Per accedere ad un singolo campo di una variabile di tipo struct si utilizza l'operatore di appartenenza punto: 
-                            <code class="text-amber-300">nomeVariabile.nomeCampo</code>.
+                    <!-- Modo 2: Campo per campo -->
+                    <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                        <h4 class="text-lg font-bold text-blue-400 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-list-check"></i> Campo per Campo
+                        </h4>
+                        <p class="text-slate-300 text-sm mb-4">Assegna singolarmente ciascuna informazione accedendo ai campi con il punto.</p>
+                        <div class="bg-slate-950 p-4 rounded-lg font-mono text-sm text-slate-200 mb-3 border border-slate-800 space-y-1">
+                            <div><span class="text-purple-300">tu</span>.<span class="text-cyan-300">nome</span> = <span class="text-emerald-300">io</span>.<span class="text-cyan-300">nome</span>;</div>
+                            <div><span class="text-purple-300">tu</span>.<span class="text-cyan-300">cognome</span> = <span class="text-emerald-300">io</span>.<span class="text-cyan-300">cognome</span>;</div>
+                            <div><span class="text-purple-300">tu</span>.<span class="text-cyan-300">eta</span> = <span class="text-emerald-300">io</span>.<span class="text-cyan-300">eta</span>;</div>
+                        </div>
+                        <p class="text-slate-400 text-xs">
+                            <strong>Nota:</strong> Entrambe le sintassi producono lo stesso risultato finale in memoria, ma la prima è più breve e meno soggetta ad errori.
                         </p>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <!-- Esempio pratico C++ struct basi -->
-            <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-lg p-6 space-y-4">
-                <h3 class="text-lg font-bold text-white flex items-center">
-                    <i class="fa-solid fa-code text-emerald-400 mr-2"></i> Sintassi Base e Definizione di Tipo
-                </h3>
-                <pre><code class="language-cpp">// Definizione della struttura (Tipo di dato personalizzato)
-struct T_STUDENTE {
-    int matricola;      // Campo intero
-    string cognome;     // Campo stringa
-    string nome;        // Campo stringa
-    float mediaVoti;    // Campo float
-};
+            <!-- SECTION 4: QUIZ INTERATTIVO DI VERIFICA -->
+            <section id="quiz" class="space-y-6">
+                <div class="border-b border-slate-700 pb-3">
+                    <h3 class="text-2xl font-bold text-white flex items-center gap-2">
+                        <span class="text-blue-500">4.</span> Quiz di Verifica
+                    </h3>
+                    <p class="text-slate-400 text-sm">Rispondi alle domande per verificare la tua comprensione delle Struct.</p>
+                </div>
 
-int main() {
-    T_STUDENTE st;     // Dichiarazione di una variabile di tipo T_STUDENTE
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg space-y-6">
+                    <div id="quiz-question-container">
+                        <div class="flex justify-between items-center mb-4">
+                            <span id="quiz-progress" class="text-xs font-mono bg-slate-700 text-slate-300 px-2.5 py-1 rounded">Domanda 1 di 3</span>
+                            <span id="quiz-score" class="text-xs font-semibold text-emerald-400">Punteggio: 0</span>
+                        </div>
+                        <h4 id="quiz-question-title" class="text-lg font-bold text-white mb-4">Caricamento domanda...</h4>
+                        <div id="quiz-options-container" class="space-y-3">
+                            <!-- Opzioni generate da JS -->
+                        </div>
+                    </div>
+                    
+                    <div id="quiz-feedback" class="hidden p-4 rounded-lg text-sm font-medium border">
+                        <!-- Messaggio feedback -->
+                    </div>
 
-    // Assegnazione dei campi tramite l'operatore punto
-    st.matricola = 101;
-    st.cognome = "Verdi";
-    st.nome = "Giuseppe";
-    st.mediaVoti = 8.5;
+                    <div class="flex justify-between items-center pt-2">
+                        <button id="quiz-next-btn" onclick="nextQuizQuestion()" disabled class="bg-blue-600 hover:bg-blue-500 disabled:bg-slate-700 disabled:text-slate-500 text-white font-semibold px-4 py-2 rounded text-xs transition">
+                            Prossima Domanda <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
 
-    // Lettura / Stampa dei campi
-    cout << "Studente: " << st.nome << " " << st.cognome << " (Matr: " << st.matricola << ")";
-    return 0;
-}</code></pre>
-            </div>
         </main>
     </div>
 
@@ -854,8 +1100,14 @@ int main() {
             document.getElementById('view-lesson-struct').classList.add('hidden');
             document.getElementById('view-lesson1').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            // Re-inizializza highlight.js per sicurezza
             hljs.highlightAll();
+        }
+
+        function scrollToLesson1Section(sectionId) {
+            const elem = document.getElementById(sectionId);
+            if(elem) {
+                elem.scrollIntoView({ behavior: 'smooth' });
+            }
         }
 
         // Tab Switching inside Lesson 2 (structarray.html)
@@ -875,7 +1127,219 @@ int main() {
         }
 
         // ==========================================
-        // GUIDA PASSO PASSO: CALCOLA ESITO
+        // SIMULATORE LEZIONE 1 (struct.html)
+        // ==========================================
+        let simStep = 1;
+        const totalSimSteps = 9;
+
+        const simStepsData = {
+            1: {
+                line: 1,
+                desc: "Definizione del tipo di dato <code>T_PERSONA</code>. Il compilatore memorizza lo schema dei campi (cognome, nome, eta).",
+                term: "> Dichiarazione struct T_PERSONA completata.",
+                mem: { io: { nome: "---", cognome: "---", eta: "---" }, tu: { nome: "---", cognome: "---", eta: "---" } }
+            },
+            2: {
+                line: 8,
+                desc: "Vengono allocate in memoria le variabili <code>io</code> e <code>tu</code>. I campi non sono ancora inizializzati.",
+                term: "> Allocate variabili 'io' (0x7ffd1) e 'tu' (0x7ffd2).",
+                mem: { io: { nome: "?", cognome: "?", eta: "?" }, tu: { nome: "?", cognome: "?", eta: "?" } }
+            },
+            3: {
+                line: 9,
+                desc: "Esecuzione <code>cin >> io.nome</code>: L'utente inserisce il nome 'Mario'.",
+                term: "Inserisci nome io: Mario",
+                mem: { io: { nome: "Mario", cognome: "?", eta: "?" }, tu: { nome: "?", cognome: "?", eta: "?" } }
+            },
+            4: {
+                line: 10,
+                desc: "Esecuzione <code>cin >> io.cognome</code>: L'utente inserisce il cognome 'Rossi'.",
+                term: "Inserisci cognome io: Rossi",
+                mem: { io: { nome: "Mario", cognome: "Rossi", eta: "?" }, tu: { nome: "?", cognome: "?", eta: "?" } }
+            },
+            5: {
+                line: 11,
+                desc: "Esecuzione <code>cin >> io.eta</code>: L'utente inserisce l'età 18.",
+                term: "Inserisci età io: 18",
+                mem: { io: { nome: "Mario", cognome: "Rossi", eta: "18" }, tu: { nome: "?", cognome: "?", eta: "?" } }
+            },
+            6: {
+                line: 12,
+                desc: "Copia di blocco <code>tu = io;</code>: Tutti i valori della struct <code>io</code> vengono copiati in <code>tu</code>.",
+                term: "> Assegnazione bit-a-bit: tu = io;",
+                mem: { io: { nome: "Mario", cognome: "Rossi", eta: "18" }, tu: { nome: "Mario", cognome: "Rossi", eta: "18" } }
+            },
+            7: {
+                line: 13,
+                desc: "Stampa a video dei campi di <code>tu</code> tramite <code>cout << tu.nome << ' ' << tu.cognome;</code>",
+                term: "Output: Mario Rossi",
+                mem: { io: { nome: "Mario", cognome: "Rossi", eta: "18" }, tu: { nome: "Mario", cognome: "Rossi", eta: "18" } }
+            },
+            8: {
+                line: 14,
+                desc: "Fine del programma <code>main()</code>. Il controllo viene restituito al sistema operativo.",
+                term: "> Programma terminato con codice di uscita 0.",
+                mem: { io: { nome: "Mario", cognome: "Rossi", eta: "18" }, tu: { nome: "Mario", cognome: "Rossi", eta: "18" } }
+            }
+        };
+
+        function stepSimulator(dir) {
+            simStep += dir;
+            if (simStep < 1) simStep = 1;
+            if (simStep > 8) simStep = 8;
+            renderSimulator();
+        }
+
+        function resetSimulator() {
+            simStep = 1;
+            renderSimulator();
+        }
+
+        function renderSimulator() {
+            const data = simStepsData[simStep];
+            document.getElementById('step-indicator').innerText = `Passo ${simStep} di 8`;
+            document.getElementById('explanation-box').innerHTML = data.desc;
+            
+            const term = document.getElementById('terminal-output');
+            term.innerHTML = `<p class="text-emerald-400 font-mono">${data.term}</p>`;
+
+            // Memory RAM UI update
+            document.getElementById('mem-io-nome').innerText = data.mem.io.nome;
+            document.getElementById('mem-io-cognome').innerText = data.mem.io.cognome;
+            document.getElementById('mem-io-eta').innerText = data.mem.io.eta;
+
+            document.getElementById('mem-tu-nome').innerText = data.mem.tu.nome;
+            document.getElementById('mem-tu-cognome').innerText = data.mem.tu.cognome;
+            document.getElementById('mem-tu-eta').innerText = data.mem.tu.eta;
+
+            // Highlight line
+            for (let i = 1; i <= 14; i++) {
+                const lineElem = document.getElementById(`line-${i}`);
+                if (lineElem) {
+                    if (i === data.line) {
+                        lineElem.classList.add('highlight-line');
+                    } else {
+                        lineElem.classList.remove('highlight-line');
+                    }
+                }
+            }
+
+            document.getElementById('btn-prev').disabled = (simStep === 1);
+            document.getElementById('btn-next').disabled = (simStep === 8);
+        }
+
+        // ==========================================
+        // QUIZ INTERATTIVO LEZIONE 1
+        // ==========================================
+        const quizData = [
+            {
+                question: "Qual è l'operatore utilizzato per accedere a un campo di una struct?",
+                options: [". (Punto)", "-> (Freccia)", ":: (Risoluzione di ambito)", "* (Asterisco)"],
+                correct: 0
+            },
+            {
+                question: "Quale affermazione sull'assegnazione 'tu = io' tra due struct del medesimo tipo è corretta?",
+                options: [
+                    "È illegale in C++, bisogna copiare campo per campo.",
+                    "Copia automaticamente tutti i campi della struct in un'unica istruzione.",
+                    "Copia soltanto il primo campo definito nella struct.",
+                    "Copia soltanto gli indirizzi di memoria."
+                ],
+                correct: 1
+            },
+            {
+                question: "Cosa manca alla fine della dichiarazione di una struct in C++: 'struct ALUNNO { int id; }'?",
+                options: ["Un punto e virgola ';'", "Una parentesi tonda ')'", "La parola chiave return", "Nessun errore"],
+                correct: 0
+            }
+        ];
+
+        let currentQuizIndex = 0;
+        let quizScore = 0;
+
+        function loadQuizQuestion() {
+            const q = quizData[currentQuizIndex];
+            document.getElementById('quiz-progress').innerText = `Domanda ${currentQuizIndex + 1} di ${quizData.length}`;
+            document.getElementById('quiz-score').innerText = `Punteggio: ${quizScore}`;
+            document.getElementById('quiz-question-title').innerText = q.question;
+            
+            const optContainer = document.getElementById('quiz-options-container');
+            optContainer.innerHTML = '';
+
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.className = 'hidden p-4 rounded-lg text-sm font-medium border';
+            document.getElementById('quiz-next-btn').disabled = true;
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-3 rounded-lg bg-slate-900 hover:bg-slate-700 border border-slate-700 text-sm font-medium transition flex items-center justify-between";
+                btn.innerHTML = `<span>${opt}</span> <i class="fa-regular fa-circle text-slate-500"></i>`;
+                btn.onclick = () => checkQuizAnswer(idx, btn);
+                optContainer.appendChild(btn);
+            });
+        }
+
+        function checkQuizAnswer(selectedIdx, btnElem) {
+            const q = quizData[currentQuizIndex];
+            const optButtons = document.getElementById('quiz-options-container').children;
+            const feedback = document.getElementById('quiz-feedback');
+
+            for (let b of optButtons) {
+                b.disabled = true;
+                b.classList.add('opacity-70');
+            }
+
+            if (selectedIdx === q.correct) {
+                quizScore += 10;
+                btnElem.classList.remove('opacity-70');
+                btnElem.classList.add('bg-emerald-950', 'border-emerald-500', 'text-emerald-300');
+                feedback.innerHTML = `<i class="fa-solid fa-circle-check mr-2"></i><strong>Esatto!</strong> Risposta corretta.`;
+                feedback.className = 'p-4 rounded-lg text-sm font-medium border bg-emerald-950/40 border-emerald-500/50 text-emerald-300 block';
+            } else {
+                btnElem.classList.remove('opacity-70');
+                btnElem.classList.add('bg-red-950', 'border-red-500', 'text-red-300');
+                optButtons[q.correct].classList.remove('opacity-70');
+                optButtons[q.correct].classList.add('bg-emerald-950', 'border-emerald-500', 'text-emerald-300');
+                feedback.innerHTML = `<i class="fa-solid fa-circle-xmark mr-2"></i><strong>Sbagliato.</strong> La risposta corretta è l'opzione evidenziata in verde.`;
+                feedback.className = 'p-4 rounded-lg text-sm font-medium border bg-red-950/40 border-red-500/50 text-red-300 block';
+            }
+
+            document.getElementById('quiz-score').innerText = `Punteggio: ${quizScore}`;
+            document.getElementById('quiz-next-btn').disabled = false;
+        }
+
+        function nextQuizQuestion() {
+            currentQuizIndex++;
+            if (currentQuizIndex < quizData.length) {
+                loadQuizQuestion();
+            } else {
+                const container = document.getElementById('quiz-question-container');
+                container.innerHTML = `
+                    <div class="text-center py-8 space-y-4">
+                        <div class="inline-block p-4 bg-emerald-900/40 text-emerald-400 rounded-full border border-emerald-500">
+                            <i class="fa-solid fa-trophy text-3xl"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white">Quiz Completato!</h4>
+                        <p class="text-slate-300 text-sm">Hai totalizzato <strong class="text-emerald-400 font-bold text-lg">${quizScore}</strong> punti su ${quizData.length * 10}.</p>
+                        <button onclick="resetQuiz()" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-4 py-2 rounded text-xs transition">
+                            <i class="fa-solid fa-rotate-right mr-1"></i> Riprova Quiz
+                        </button>
+                    </div>
+                `;
+                document.getElementById('quiz-feedback').className = 'hidden';
+                document.getElementById('quiz-next-btn').classList.add('hidden');
+            }
+        }
+
+        function resetQuiz() {
+            currentQuizIndex = 0;
+            quizScore = 0;
+            document.getElementById('quiz-next-btn').classList.remove('hidden');
+            loadQuizQuestion();
+        }
+
+        // ==========================================
+        // GUIDA PASSO PASSO: CALCOLA ESITO (LEZIONE 2)
         // ==========================================
         let currentEsitoStep = 1;
 
@@ -973,7 +1437,7 @@ int main() {
         }
 
         // ==========================================
-        // SIMULAZIONE FUNZIONE RIEMPI
+        // SIMULAZIONE FUNZIONE RIEMPI (LEZIONE 2)
         // ==========================================
         function runRiempiSim() {
             const cod = parseInt(document.getElementById('sim-cod').value);
@@ -1052,7 +1516,7 @@ int main() {
         }
 
         // ==========================================
-        // SIMULAZIONE FUNZIONE CALCMEDIA
+        // SIMULAZIONE FUNZIONE CALCMEDIA (LEZIONE 2)
         // ==========================================
         let mediaSimState = {
             voti: [],
@@ -1120,7 +1584,7 @@ int main() {
         }
 
         // ==========================================
-        // TESTER FUNZIONE CALCOLA ESITO
+        // TESTER FUNZIONE CALCOLA ESITO (LEZIONE 2)
         // ==========================================
         function testCalcolaEsito() {
             const rawVoti = document.getElementById('esito-test-voti').value;
@@ -1163,6 +1627,8 @@ int main() {
         document.addEventListener('DOMContentLoaded', () => {
             hljs.highlightAll();
             renderEsitoStep();
+            renderSimulator();
+            loadQuizQuestion();
         });
     </script>
 </body>
