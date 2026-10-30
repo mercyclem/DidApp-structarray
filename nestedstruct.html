@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="it" class="h-full bg-slate-900 text-slate-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lezione C++: Struct Annidate e Vettori Paralleli</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome per icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        .code-highlight {
+            background-color: rgba(14, 165, 233, 0.15);
+            border-left: 3px solid #0ea5e9;
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col font-sans bg-slate-900 text-slate-200">
+
+    <!-- Top Navigation Header -->
+    <header class="bg-slate-800 border-b border-slate-700 px-4 py-3 flex-none flex flex-wrap justify-between items-center shadow-lg z-10">
+        <div class="flex items-center space-x-3">
+            <div class="bg-gradient-to-tr from-sky-500 to-indigo-600 p-2 rounded-lg text-white shadow-md">
+                <i class="fa-solid me-1 fa-code text-xl"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-lg text-white tracking-tight">C++ Struct Lab: Fatture & Vettori Paralleli</h1>
+                <p class="text-xs text-slate-400">Lezione interattiva su Strutture Annidate ed Esercizi</p>
+            </div>
+        </div>
+        
+        <!-- Navigation Tabs -->
+        <nav class="flex space-x-1 mt-3 sm:mt-0 bg-slate-900/80 p-1 rounded-xl border border-slate-700/60">
+            <button onclick="switchTab('theory')" id="tab-theory" class="tab-btn active px-4 py-2 text-sm font-medium rounded-lg transition-all flex items-center gap-2 bg-sky-600 text-white shadow">
+                <i class="fa-solid fa-book"></i>
+                <span>1. Teoria & Struttura</span>
+            </button>
+            <button onclick="switchTab('simulation')" id="tab-simulation" class="tab-btn px-4 py-2 text-sm font-medium rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-all flex items-center gap-2">
+                <i class="fa-solid fa-play"></i>
+                <span>2. Simulatore Step-by-Step</span>
+            </button>
+            <button onclick="switchTab('homework')" id="tab-homework" class="tab-btn px-4 py-2 text-sm font-medium rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-all flex items-center gap-2">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>3. Esercizio di Casa</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 max-w-7xl w-full mx-auto">
+        
+        <!-- ================= TAB 1: TEORIA DETTAGLIATA ================= -->
+        <section id="sec-theory" class="tab-content space-y-8">
+            <!-- Intro Banner -->
+            <div class="bg-gradient-to-r from-slate-800 via-slate-800/90 to-sky-950/40 p-6 rounded-2xl border border-slate-700 shadow-xl">
+                <h2 class="text-2xl font-bold text-white mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-layer-group text-sky-400"></i>
+                    Strutture Annidate e Vettori Paralleli in C++
+                </h2>
+                <p class="text-slate-300 leading-relaxed max-w-4xl">
+                    In questa lezione analizziamo come rappresentare dati complessi e strutturati in C++. Utilizziamo un tipo di dato utente per rappresentare una <strong>Data</strong> annidato all'interno di una struttura <strong>Fattura</strong>, combinando variabili semplici, struct e vettori paralleli per gestire i prodotti della fattura.
+                </p>
+            </div>
+
+            <!-- Grid Teoria -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- Definizione Tipo T_DATA e T_FATTURA -->
+                <div class="bg-slate-800 rounded-2xl border border-slate-700 p-5 shadow-lg flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4 border-b border-slate-700 pb-3">
+                            <h3 class="text-lg font-bold text-sky-400 flex items-center gap-2">
+                                <i class="fa-solid fa-code text-sky-400"></i>
+                                Definizione delle Strutture (Dalla Foto 1)
+                            </h3>
+                            <span class="text-xs font-mono bg-slate-900 text-slate-400 px-2 py-1 rounded border border-slate-700">C++ Syntax</span>
+                        </div>
+                        <p class="text-sm text-slate-300 mb-4">
+                            Osserva la relazione tra <code class="text-amber-300 font-mono">T_DATA</code> e <code class="text-sky-300 font-mono">T_FATTURA</code>. La data non è composta da tre int sparsi, ma da una sotto-struttura riutilizzabile.
+                        </p>
+
+                        <div class="relative bg-slate-950 rounded-xl p-4 font-mono text-xs sm:text-sm text-slate-200 border border-slate-800 overflow-x-auto shadow-inner">
+<pre><code><span class="text-slate-500">// Costante per la dimensione massima dei vettori</span>
+<span class="text-purple-400">const int</span> NMAX = <span class="text-amber-400">100</span>;
+
+<span class="text-slate-500">// 1. Sotto-struttura per la data</span>
+<span class="text-purple-400">struct</span> <span class="text-amber-300">T_DATA</span> {
+    <span class="text-purple-400">int</span> gg; <span class="text-slate-500">// Giorno</span>
+    <span class="text-purple-400">int</span> mm; <span class="text-slate-500">// Mese</span>
+    <span class="text-purple-400">int</span> aa; <span class="text-slate-500">// Anno</span>
+};
+
+<span class="text-slate-500">// 2. Struttura principale della Fattura</span>
+<span class="text-purple-400">struct</span> <span class="text-sky-300">T_FATTURA</span> {
+    <span class="text-purple-400">int</span> nf;           <span class="text-slate-500">// Numero Fattura</span>
+    <span class="text-amber-300">T_DATA</span> date;      <span class="text-slate-500">// Sotto-struttura annidata!</span>
+    <span class="text-purple-400">string</span> Cogn;      <span class="text-slate-500">// Cognome destinatario</span>
+    <span class="text-purple-400">string</span> Nom;       <span class="text-slate-500">// Nome destinatario</span>
+    
+    <span class="text-slate-500">// Vettori Paralleli per gli articoli acquistati</span>
+    <span class="text-purple-400">string</span> NP[NMAX];  <span class="text-slate-500">// Nome Prodotto</span>
+    <span class="text-purple-400">float</span> PP[NMAX];   <span class="text-slate-500">// Prezzo Prodotto</span>
+    <span class="text-purple-400">int</span> QP[NMAX];     <span class="text-slate-500">// Quantità Prodotto</span>
+    
+    <span class="text-purple-400">int</span> np;           <span class="text-slate-500">// Numero Effettivo di Prodotti presenti</span>
+};</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-3 bg-slate-900/80 rounded-xl border border-slate-700/80 text-xs text-slate-300">
+                        <strong class="text-amber-400"><i class="fa-solid fa-lightbulb me-1"></i> Nota chiave:</strong> Il campo <code class="text-sky-300">np</code> rappresenta quanti elementi sono effettivamente utilizzati nei tre vettori paralleli, evitando di dover scorrere sempre tutti e <code class="text-amber-300">NMAX</code> gli elementi!
+                    </div>
+                </div>
+
+                <!-- Accesso Memoria e Vettori Paralleli -->
+                <div class="space-y-6">
+                    <!-- Accesso ai campi nidificati -->
+                    <div class="bg-slate-800 rounded-2xl border border-slate-700 p-5 shadow-lg">
+                        <h3 class="text-lg font-bold text-sky-400 mb-3 flex items-center gap-2 border-b border-slate-700 pb-3">
+                            <i class="fa-solid fa-sitemap"></i>
+                            Accesso ai Campi Annidati
+                        </h3>
+                        <p class="text-sm text-slate-300 mb-3">
+                            Per accedere ad un membro all'interno di una sotto-struttura si usa l'operatore punto <code>.</code> a cascata:
+                        </p>
+
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 font-mono text-sm space-y-2">
+                            <div class="flex items-center gap-2 text-slate-300">
+                                <span class="bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded text-xs">Esempio</span>
+                                <code>T_FATTURA f;</code>
+                            </div>
+                            <div class="text-sky-300 pl-4">
+                                <code>f.date.gg = 15;</code> <span class="text-slate-500 text-xs">// Accede al giorno</span>
+                            </div>
+                            <div class="text-sky-300 pl-4">
+                                <code>f.date.mm = 10;</code> <span class="text-slate-500 text-xs">// Accede al mese</span>
+                            </div>
+                            <div class="text-sky-300 pl-4">
+                                <code>f.date.aa = 2024;</code> <span class="text-slate-500 text-xs">// Accede all'anno</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vettori Paralleli Diagramma -->
+                    <div class="bg-slate-800 rounded-2xl border border-slate-700 p-5 shadow-lg">
+                        <h3 class="text-lg font-bold text-sky-400 mb-3 flex items-center gap-2 border-b border-slate-700 pb-3">
+                            <i class="fa-solid fa-table-columns"></i>
+                            Concetto di Vettori Paralleli
+                        </h3>
+                        <p class="text-sm text-slate-300 mb-4">
+                            Tre vettori si dicono <strong>paralleli</strong> quando l'elemento alla medesima posizione <code class="text-amber-400">i</code> si riferisce alla stessa entità (stesso prodotto):
+                        </p>
+
+                        <!-- Tabella dimostrativa vettori paralleli -->
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs font-mono border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-900 text-slate-400 border-b border-slate-700">
+                                        <th class="p-2 border-r border-slate-700">Indice (i)</th>
+                                        <th class="p-2 border-r border-slate-700 text-emerald-400">NP[i] (Nome)</th>
+                                        <th class="p-2 border-r border-slate-700 text-sky-400">PP[i] (Prezzo)</th>
+                                        <th class="p-2 text-amber-400">QP[i] (Quantità)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-700/60 bg-slate-950/50">
+                                    <tr class="hover:bg-slate-800/50">
+                                        <td class="p-2 font-bold text-slate-500 border-r border-slate-700">0</td>
+                                        <td class="p-2 text-emerald-300 border-r border-slate-700">"Pane"</td>
+                                        <td class="p-2 text-sky-300 border-r border-slate-700">2.50 €</td>
+                                        <td class="p-2 text-amber-300">3</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-800/50">
+                                        <td class="p-2 font-bold text-slate-500 border-r border-slate-700">1</td>
+                                        <td class="p-2 text-emerald-300 border-r border-slate-700">"Latte"</td>
+                                        <td class="p-2 text-sky-300 border-r border-slate-700">1.20 €</td>
+                                        <td class="p-2 text-amber-300">2</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-800/50">
+                                        <td class="p-2 font-bold text-slate-500 border-r border-slate-700">2</td>
+                                        <td class="p-2 text-emerald-300 border-r border-slate-700">"Caffè"</td>
+                                        <td class="p-2 text-sky-300 border-r border-slate-700">4.50 €</td>
+                                        <td class="p-2 text-amber-300">1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Codice delle due funzioni fondamentali spiegato -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Funzione CalcImp -->
+                <div class="bg-slate-800 rounded-2xl border border-slate-700 p-5 shadow-lg">
+                    <div class="flex items-center justify-between mb-3 border-b border-slate-700 pb-2">
+                        <h3 class="font-bold text-white text-base flex items-center gap-2">
+                            <span class="bg-sky-500/20 text-sky-400 px-2 py-0.5 rounded text-xs">Foto 2</span>
+                            Funzione CalcImp (Calcolo Importo)
+                        </h3>
+                    </div>
+                    <p class="text-xs text-slate-300 mb-3">
+                        Calcola il totale da pagare moltiplicando il prezzo unitario per la quantità per ogni prodotto e accumulando il totale.
+                    </p>
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 font-mono text-xs text-slate-200 overflow-x-auto">
+<pre><code><span class="text-purple-400">float</span> <span class="text-blue-400">CalcImp</span>(<span class="text-sky-300">T_FATTURA</span> a) {
+    <span class="text-purple-400">float</span> SOM;
+    <span class="text-purple-400">int</span> i;
+    
+    SOM = <span class="text-amber-400">0</span>;
+    <span class="text-purple-400">for</span>(i = <span class="text-amber-400">0</span>; i &lt; a.np; i++) {
+        <span class="text-slate-500">// Accumulo: Prezzo * Quantità per l'articolo i</span>
+        SOM = SOM + (a.PP[i] * a.QP[i]);
+    }
+    
+    <span class="text-purple-400">return</span> SOM;
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Funzione stampaF -->
+                <div class="bg-slate-800 rounded-2xl border border-slate-700 p-5 shadow-lg">
+                    <div class="flex items-center justify-between mb-3 border-b border-slate-700 pb-2">
+                        <h3 class="font-bold text-white text-base flex items-center gap-2">
+                            <span class="bg-sky-500/20 text-sky-400 px-2 py-0.5 rounded text-xs">Foto 3</span>
+                            Funzione stampaF (Visualizzazione)
+                        </h3>
+                    </div>
+                    <p class="text-xs text-slate-300 mb-3">
+                        Stampa il numero fattura, il destinatario, la data (accedendo a <code>a.date.gg</code> ecc.) e richiama <code>CalcImp</code> per stampare l'importo totale.
+                    </p>
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 font-mono text-xs text-slate-200 overflow-x-auto">
+<pre><code><span class="text-purple-400">void</span> <span class="text-blue-400">stampaF</span>(<span class="text-sky-300">T_FATTURA</span> a) {
+    <span class="text-purple-400">float</span> S;
+    S = CalcImp(a); <span class="text-slate-500">// Calcola prima l'importo totale</span>
+    
+    cout &lt;&lt; <span class="text-emerald-300">"DATI:"</span> &lt;&lt; endl;
+    cout &lt;&lt; <span class="text-emerald-300">"NUMERO:\t"</span> &lt;&lt; a.nf &lt;&lt; endl;
+    cout &lt;&lt; <span class="text-emerald-300">"DESTINATARIO:\t"</span> &lt;&lt; a.Cogn &lt;&lt; <span class="text-emerald-300">" "</span> &lt;&lt; a.Nom &lt;&lt; endl;
+    cout &lt;&lt; <span class="text-emerald-300">"DATA:\t"</span> &lt;&lt; a.date.gg &lt;&lt; <span class="text-emerald-300">"/"</span> &lt;&lt; a.date.mm &lt;&lt; <span class="text-emerald-300">"/"</span> &lt;&lt; a.date.aa &lt;&lt; endl;
+    cout &lt;&lt; <span class="text-emerald-300">"IMPORTO:\t"</span> &lt;&lt; S &lt;&lt; endl;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 2: SIMULATORE PASSO-PASSO ================= -->
+        <section id="sec-simulation" class="tab-content hidden space-y-6">
+            
+            <div class="bg-slate-800 p-4 rounded-2xl border border-slate-700 shadow-md flex flex-wrap justify-between items-center gap-4">
+                <div>
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-laptop-code text-sky-400"></i>
+                        Simulatore di Esecuzione in Tempo Reale
+                    </h2>
+                    <p class="text-xs text-slate-400">Osserva passo-passo l'esecuzione di <code>CalcImp()</code> e il tracciamento della RAM</p>
+                </div>
+
+                <!-- Controlli Esecuzione -->
+                <div class="flex items-center gap-2">
+                    <button onclick="simPrev()" id="btn-sim-prev" class="px-3 py-2 bg-slate-700 hover:bg-slate-600 disabled:opacity-40 disabled:hover:bg-slate-700 text-white text-xs font-semibold rounded-lg transition flex items-center gap-1">
+                        <i class="fa-solid fa-arrow-left"></i> Indietro
+                    </button>
+                    <button onclick="simNext()" id="btn-sim-next" class="px-4 py-2 bg-sky-600 hover:bg-sky-500 disabled:opacity-40 text-white text-xs font-bold rounded-lg transition shadow-md flex items-center gap-1">
+                        Avanti <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <button onclick="simReset()" class="px-3 py-2 bg-slate-700 hover:bg-slate-600 text-slate-300 text-xs font-semibold rounded-lg transition">
+                        <i class="fa-solid fa-rotate-left"></i> Reset
+                    </button>
+                </div>
+            </div>
+
+            <!-- Griglia Simulazione -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Colonna Sinistra: Codice ed Esecuzione Linea (5 cols) -->
+                <div class="lg:col-span-5 bg-slate-800 rounded-2xl border border-slate-700 p-4 shadow-lg flex flex-col">
+                    <h3 class="text-sm font-bold text-slate-300 mb-3 flex items-center justify-between border-b border-slate-700 pb-2">
+                        <span><i class="fa-solid fa-code text-sky-400 me-1"></i> Codice in Esecuzione</span>
+                        <span id="step-indicator" class="text-xs font-mono bg-sky-950 text-sky-400 px-2 py-0.5 rounded border border-sky-800/50">Passo 0 / 0</span>
+                    </h3>
+
+                    <!-- Code block con evidenziatore di riga -->
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-900 font-mono text-xs text-slate-300 space-y-1 flex-1 relative overflow-x-auto">
+                        <div id="code-line-1" class="px-2 py-1 rounded transition-colors">float CalcImp(T_FATTURA a) {</div>
+                        <div id="code-line-2" class="px-2 py-1 rounded transition-colors pl-4">float SOM;</div>
+                        <div id="code-line-3" class="px-2 py-1 rounded transition-colors pl-4">int i;</div>
+                        <div id="code-line-4" class="px-2 py-1 rounded transition-colors pl-4">SOM = 0;</div>
+                        <div id="code-line-5" class="px-2 py-1 rounded transition-colors pl-4">for(i = 0; i &lt; a.np; i++) {</div>
+                        <div id="code-line-6" class="px-2 py-1 rounded transition-colors pl-8">SOM = SOM + (a.PP[i] * a.QP[i]);</div>
+                        <div id="code-line-7" class="px-2 py-1 rounded transition-colors pl-4">}</div>
+                        <div id="code-line-8" class="px-2 py-1 rounded transition-colors pl-4">return SOM;</div>
+                        <div id="code-line-9" class="px-2 py-1 rounded transition-colors">}</div>
+                    </div>
+
+                    <!-- Spiegazione dello Step Corrente -->
+                    <div class="mt-4 p-3 bg-sky-950/40 border border-sky-800/60 rounded-xl">
+                        <div class="text-xs font-bold text-sky-400 mb-1 flex items-center gap-1">
+                            <i class="fa-solid fa-circle-info"></i> Spiegazione Step:
+                        </div>
+                        <p id="step-explanation" class="text-xs text-slate-200 leading-relaxed">
+                            Fai clic su "Avanti" per avviare la simulazione della funzione.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Colonna Destra: Stato della Memoria e Tabelle (7 cols) -->
+                <div class="lg:col-span-7 space-y-6">
+                    
+                    <!-- Registro Variabili Locali CPU/RAM -->
+                    <div class="bg-slate-800 rounded-2xl border border-slate-700 p-4 shadow-lg">
+                        <h3 class="text-sm font-bold text-slate-300 mb-3 border-b border-slate-700 pb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-memory text-amber-400"></i>
+                            Stato Variabili Locali (Memoria RAM)
+                        </h3>
+                        <div class="grid grid-cols-3 gap-3">
+                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-700 text-center">
+                                <span class="text-xs text-slate-400 block mb-1 font-mono">i (Indice)</span>
+                                <span id="var-i" class="text-xl font-bold font-mono text-amber-400">-</span>
+                            </div>
+                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-700 text-center">
+                                <span class="text-xs text-slate-400 block mb-1 font-mono">a.np (Articoli)</span>
+                                <span id="var-np" class="text-xl font-bold font-mono text-emerald-400">3</span>
+                            </div>
+                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-700 text-center">
+                                <span class="text-xs text-slate-400 block mb-1 font-mono">SOM (Totale)</span>
+                                <span id="var-som" class="text-xl font-bold font-mono text-sky-400">0.00 €</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rappresentazione dei Vettori Paralleli nella Fattura 'a' -->
+                    <div class="bg-slate-800 rounded-2xl border border-slate-700 p-4 shadow-lg">
+                        <h3 class="text-sm font-bold text-slate-300 mb-3 border-b border-slate-700 pb-2 flex items-center justify-between">
+                            <span><i class="fa-solid fa-table text-sky-400 me-1"></i> Contenuto della Fattura <code class="text-amber-300 font-mono">a</code> (Vettori Paralleli)</span>
+                            <span class="text-xs text-slate-400 font-normal">Ispirato alla Lavagna (Foto 2)</span>
+                        </h3>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-xs text-left font-mono border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-900 text-slate-400 border-b border-slate-700">
+                                        <th class="p-2 border-r border-slate-700">i</th>
+                                        <th class="p-2 border-r border-slate-700">NP[i] (Prodotto)</th>
+                                        <th class="p-2 border-r border-slate-700">PP[i] (Prezzo)</th>
+                                        <th class="p-2 border-r border-slate-700">QP[i] (Qtà)</th>
+                                        <th class="p-2 text-sky-400">Parziale (PP * QP)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="sim-table-body" class="divide-y divide-slate-700/60 bg-slate-950/60">
+                                    <!-- Popolato dinamicamente da JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Output Console Virtuale -->
+                    <div class="bg-slate-950 rounded-xl border border-slate-800 p-3 font-mono text-xs">
+                        <div class="text-slate-500 mb-1 flex items-center gap-2 border-b border-slate-800 pb-1">
+                            <i class="fa-solid fa-terminal text-emerald-500"></i> Terminale Output / Return
+                        </div>
+                        <div id="sim-terminal" class="text-emerald-400 min-h-[3rem] p-1">
+                            > In attesa di avvio della simulazione...
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= TAB 3: ESERCIZIO DI CASA (FOTO 4) ================= -->
+        <section id="sec-homework" class="tab-content hidden space-y-8">
+            
+            <!-- Banner Esercizio Foto 4 -->
+            <div class="bg-gradient-to-r from-slate-800 via-amber-950/30 to-slate-800 p-6 rounded-2xl border border-amber-500/30 shadow-xl">
+                <div class="flex items-start gap-4">
+                    <div class="bg-amber-500/20 text-amber-400 p-3 rounded-xl border border-amber-500/30 text-2xl hidden sm:block">
+                        <i class="fa-solid fa-pencil"></i>
+                    </div>
+                    <div>
+                        <span class="bg-amber-500/20 text-amber-300 text-xs px-2.5 py-1 rounded-full font-semibold border border-amber-500/30">Esercizio Assegnato (Foto 4)</span>
+                        <h2 class="text-xl font-bold text-white mt-1 mb-2">
+                            "Date due fatture, stampare i dati (funzione stampa) della fattura con l'importo totale più alto."
+                        </h2>
+                        <p class="text-sm text-slate-300">
+                            Impara la logica risolutiva passo dopo passo per scrivere il programma C++ completo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stepper di Risoluzione -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Navbar degli Step (4 cols) -->
+                <div class="lg:col-span-4 space-y-2">
+                    <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3 px-1">Passaggi della Soluzione</h3>
+                    
+                    <button onclick="setHwStep(1)" id="hw-step-btn-1" class="hw-step-btn w-full text-left p-3 rounded-xl border transition-all flex items-center justify-between bg-slate-800 border-sky-500 text-white shadow">
+                        <div class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-full bg-sky-500 text-white flex items-center justify-center text-xs font-bold">1</span>
+                            <div>
+                                <div class="font-semibold text-sm">Dichiarazione</div>
+                                <div class="text-xs text-slate-400">Creazione variabili fattura</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-xs text-sky-400"></i>
+                    </button>
+
+                    <button onclick="setHwStep(2)" id="hw-step-btn-2" class="hw-step-btn w-full text-left p-3 rounded-xl border transition-all flex items-center justify-between bg-slate-800/60 border-slate-700 text-slate-400 hover:text-white">
+                        <div class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-full bg-slate-700 text-slate-300 flex items-center justify-center text-xs font-bold">2</span>
+                            <div>
+                                <div class="font-semibold text-sm">Calcolo Importi</div>
+                                <div class="text-xs text-slate-400">Chiamata a CalcImp()</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-xs opacity-0"></i>
+                    </button>
+
+                    <button onclick="setHwStep(3)" id="hw-step-btn-3" class="hw-step-btn w-full text-left p-3 rounded-xl border transition-all flex items-center justify-between bg-slate-800/60 border-slate-700 text-slate-400 hover:text-white">
+                        <div class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-full bg-slate-700 text-slate-300 flex items-center justify-center text-xs font-bold">3</span>
+                            <div>
+                                <div class="font-semibold text-sm">Confronto IF-ELSE</div>
+                                <div class="text-xs text-slate-400">Trova l'importo massimo</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-xs opacity-0"></i>
+                    </button>
+
+                    <button onclick="setHwStep(4)" id="hw-step-btn-4" class="hw-step-btn w-full text-left p-3 rounded-xl border transition-all flex items-center justify-between bg-slate-800/60 border-slate-700 text-slate-400 hover:text-white">
+                        <div class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-full bg-slate-700 text-slate-300 flex items-center justify-center text-xs font-bold">4</span>
+                            <div>
+                                <div class="font-semibold text-sm">Stampa Finale</div>
+                                <div class="text-xs text-slate-400">Invocazione stampaF()</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-xs opacity-0"></i>
+                    </button>
+
+                    <button onclick="setHwStep(5)" id="hw-step-btn-5" class="hw-step-btn w-full text-left p-3 rounded-xl border transition-all flex items-center justify-between bg-slate-800/60 border-slate-700 text-slate-400 hover:text-white">
+                        <div class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs font-bold"><i class="fa-solid fa-code"></i></span>
+                            <div>
+                                <div class="font-semibold text-sm text-emerald-400">Codice Completo</div>
+                                <div class="text-xs text-slate-400">Visualizza il main() integrato</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-xs opacity-0"></i>
+                    </button>
+                </div>
+
+                <!-- Dettaglio dello Step (8 cols) -->
+                <div class="lg:col-span-8 bg-slate-800 rounded-2xl border border-slate-700 p-5 shadow-lg flex flex-col justify-between">
+                    <div>
+                        <div class="border-b border-slate-700 pb-3 mb-4 flex justify-between items-center">
+                            <h3 id="hw-step-title" class="text-lg font-bold text-sky-400">Step 1: Dichiarazione delle due Fatture</h3>
+                            <span id="hw-step-badge" class="text-xs bg-slate-900 text-slate-400 px-2.5 py-1 rounded border border-slate-700">Passo 1 di 5</span>
+                        </div>
+
+                        <!-- Descrizione -->
+                        <p id="hw-step-desc" class="text-slate-300 text-sm leading-relaxed mb-4">
+                            Nel programma principale dobbiamo dichiarare due variabili distinte di tipo <code>T_FATTURA</code> (es. <code>f1</code> e <code>f2</code>).
+                        </p>
+
+                        <!-- Snippet Codice -->
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-900 font-mono text-xs sm:text-sm text-slate-200 overflow-x-auto">
+                            <pre><code id="hw-step-code">// Codice C++ dello step...</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Bottoni Navigazione Step -->
+                    <div class="flex justify-between items-center mt-6 pt-4 border-t border-slate-700">
+                        <button onclick="prevHwStep()" id="btn-hw-prev" class="px-4 py-2 bg-slate-700 text-slate-300 hover:bg-slate-600 rounded-lg text-xs font-semibold disabled:opacity-40">
+                            <i class="fa-solid fa-arrow-left me-1"></i> Precedente
+                        </button>
+                        <button onclick="nextHwStep()" id="btn-hw-next" class="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-lg text-xs font-bold shadow">
+                            Prossimo Passo <i class="fa-solid fa-arrow-right ms-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- WORKBENCH INTERATTIVO DI TEST -->
+            <div class="bg-slate-800 rounded-2xl border border-slate-700 p-6 shadow-xl space-y-6">
+                <div class="border-b border-slate-700 pb-3 flex flex-wrap justify-between items-center gap-2">
+                    <div>
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-vial text-emerald-400"></i>
+                            Workbench Interattivo: Modifica e Confronta le due Fatture
+                        </h3>
+                        <p class="text-xs text-slate-400">Modifica gli importi o inserisci nuovi prodotti per vedere quale fattura vince la condizione <code>if (tot1 > tot2)</code></p>
+                    </div>
+                    <button onclick="recalculateHomework()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold transition flex items-center gap-1 shadow">
+                        <i class="fa-solid fa-calculator"></i> Esegui Confronto
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Fattura 1 Inputs -->
+                    <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-700 space-y-3">
+                        <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                            <span class="font-bold text-sm text-sky-400"><i class="fa-solid fa-file-invoice me-1"></i> Fattura 1 (f1)</span>
+                            <span id="tot-f1-badge" class="text-xs font-mono bg-sky-950 text-sky-300 px-2 py-0.5 rounded border border-sky-800">Tot: 0 €</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <div>
+                                <label class="text-slate-400 block mb-1">N. Fattura</label>
+                                <input type="number" id="f1-nf" value="101" class="w-full bg-slate-800 border border-slate-700 rounded p-1.5 text-white font-mono">
+                            </div>
+                            <div>
+                                <label class="text-slate-400 block mb-1">Cliente</label>
+                                <input type="text" id="f1-client" value="Rossi Mario" class="w-full bg-slate-800 border border-slate-700 rounded p-1.5 text-white font-mono">
+                            </div>
+                        </div>
+
+                        <div class="text-xs">
+                            <label class="text-slate-400 block mb-1">Data (gg/mm/aa)</label>
+                            <div class="grid grid-cols-3 gap-1 font-mono">
+                                <input type="number" id="f1-gg" value="10" class="bg-slate-800 border border-slate-700 rounded p-1 text-center">
+                                <input type="number" id="f1-mm" value="10" class="bg-slate-800 border border-slate-700 rounded p-1 text-center">
+                                <input type="number" id="f1-aa" value="2024" class="bg-slate-800 border border-slate-700 rounded p-1 text-center">
+                            </div>
+                        </div>
+
+                        <!-- Prodotti Fattura 1 -->
+                        <div class="space-y-2 pt-2">
+                            <span class="text-xs font-semibold text-slate-400 block">Prodotti (Prezzo × Quantità):</span>
+                            <div class="grid grid-cols-12 gap-1 text-[11px] font-mono">
+                                <input type="text" id="f1-p0-name" value="Tastiera" class="col-span-5 bg-slate-800 border border-slate-700 rounded p-1 text-slate-300">
+                                <input type="number" id="f1-p0-price" value="45.0" step="0.5" class="col-span-3 bg-slate-800 border border-slate-700 rounded p-1 text-slate-300" oninput="recalculateHomework()">
+                                <input type="number" id="f1-p0-qty" value="2" class="col-span-4 bg-slate-800 border border-slate-700 rounded p-1 text-slate-300" oninput="recalculateHomework()">
+                            </div>
+                            <div class="grid grid-cols-12 gap-1 text-[11px] font-mono">
+                                <input type="text" id="f1-p1-name" value="Mouse" class="col-span-5 bg-slate-800 border border-slate-700 rounded p-1 text-slate-300">
+                                <input type="number" id="f1-p1-price" value="15.0" step="0.5" class="col-span-3 bg-slate-800 border border-slate-700 rounded p-1 text-slate-300" oninput="recalculateHomework()">
+                                <input type="number" id="f1-p1-qty" value="1" class="col-span-4 bg-slate-800 border border-slate-700 rounded p-1 text-slate-300" oninput="recalculateHomework()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fattura 2 Inputs -->
+                    <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-700 space-y-3">
+                        <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                            <span class="font-bold text-sm text-purple-400"><i class="fa-solid fa-file-invoice me-1"></i> Fattura 2 (f2)</span>
+                            <span id="tot-f2-badge" class="text-xs font-mono bg-purple-950 text-purple-300 px-2 py-0.5 rounded border border-purple-800">Tot: 0 €</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <div>
+                                <label class="text-slate-400 block mb-1">N. Fattura</label>
+                                <input type="number" id="f2-nf" value="102" class="w-full bg-slate-800 border border-slate-700 rounded p-1.5 text-white font-mono">
+                            </div>
+                            <div>
+                                <label class="text-slate-400 block mb-1">Cliente</label>
+                                <input type="text" id="f2-client" value="Verdi Luigi" class="w-full bg-slate-800 border border-slate-700 rounded p-1.5 text-white font-mono">
+                            </div>
+                        </div>
+
+                        <div class="text-xs">
+                            <label class="text-slate-400 block mb-1">Data (gg/mm/aa)</label>
+                            <div class="grid grid-cols-3 gap-1 font-mono">
+                                <input type="number" id="f2-gg" value="12" class="bg-slate-800 border border-slate-700 rounded p-1 text-center">
+                                <input type="number" id="f2-mm" value="10" class="bg-slate-800 border border-slate-700 rounded p-1 text-center">
+                                <input type="number" id="f2-aa" value="2024" class="bg-slate-800 border border-slate-700 rounded p-1 text-center">
+                            </div>
+                        </div>
+
+                        <!-- Prodotti Fattura 2 -->
+                        <div class="space-y-2 pt-2">
+                            <span class="text-xs font-semibold text-slate-400 block">Prodotti (Prezzo × Quantità):</span>
+                            <div class="grid grid-cols-12 gap-1 text-[11px] font-mono">
+                                <input type="text" id="f2-p0-name" value="Monitor" class="col-span-5 bg-slate-800 border border-slate-700 rounded p-1 text-slate-300">
+                                <input type="number" id="f2-p0-price" value="180.0" step="0.5" class="col-span-3 bg-slate-800 border border-slate-700 rounded p-1 text-slate-300" oninput="recalculateHomework()">
+                                <input type="number" id="f2-p0-qty" value="1" class="col-span-4 bg-slate-800 border border-slate-700 rounded p-1 text-slate-300" oninput="recalculateHomework()">
+                            </div>
+                            <div class="grid grid-cols-12 gap-1 text-[11px] font-mono">
+                                <input type="text" id="f2-p1-name" value="Cavo HDMI" class="col-span-5 bg-slate-800 border border-slate-700 rounded p-1 text-slate-300">
+                                <input type="number" id="f2-p1-price" value="12.5" step="0.5" class="col-span-3 bg-slate-800 border border-slate-700 rounded p-1 text-slate-300" oninput="recalculateHomework()">
+                                <input type="number" id="f2-p1-qty" value="2" class="col-span-4 bg-slate-800 border border-slate-700 rounded p-1 text-slate-300" oninput="recalculateHomework()">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Risultato del Confronto e Stampa Generata -->
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-desktop text-sky-400"></i> Output Generato dalla Funzione stampaF()
+                        </span>
+                        <span id="winner-tag" class="text-xs px-2 py-0.5 rounded font-bold bg-emerald-950 text-emerald-400 border border-emerald-800">
+                            Vince Fattura 2
+                        </span>
+                    </div>
+
+                    <div id="printed-output" class="font-mono text-xs text-emerald-400 whitespace-pre leading-relaxed p-2 bg-slate-900 rounded border border-slate-800">
+                        <!-- Generato via JavaScript -->
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer statico -->
+    <footer class="bg-slate-950 border-t border-slate-800 px-4 py-2.5 text-center text-xs text-slate-500">
+        Lezione C++ - Strutture Annidate, Vettori Paralleli e Funzioni • Basato sull'esercitazione in aula
+    </footer>
+
+    <!-- LOGICA JAVASCRIPT -->
+    <script>
+        // ================= TAB NAVIGATION =================
+        function switchTab(tabId) {
+            // Nascondi tutti i contenuti
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            // Deseleziona tutti i bottoni tab
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-sky-600', 'text-white', 'shadow');
+                btn.classList.add('text-slate-400', 'hover:text-slate-200', 'hover:bg-slate-800');
+            });
+
+            // Mostra tab selezionata
+            document.getElementById('sec-' + tabId).classList.remove('hidden');
+            const activeBtn = document.getElementById('tab-' + tabId);
+            activeBtn.classList.add('bg-sky-600', 'text-white', 'shadow');
+            activeBtn.classList.remove('text-slate-400', 'hover:text-slate-200', 'hover:bg-slate-800');
+        }
+
+        // ================= SIMULATORE PASSO-PASSO (TAB 2) =================
+        const simData = {
+            products: [
+                { name: 'Pasta C.', price: 3.0, qty: 2 },
+                { name: 'Olio d\'Oliva', price: 7.5, qty: 2 },
+                { name: 'Biscotti', price: 4.0, qty: 1 }
+            ]
+        };
+
+        // Passi della simulazione per CalcImp
+        const simSteps = [
+            { line: 1, i: '-', som: 0.0, exp: "Inizio dell'esecuzione della funzione 'CalcImp(a)'. Viene passata la fattura 'a' per valore.", activeIdx: null, print: "> Chiamata a CalcImp(fattura)..." },
+            { line: 2, i: '-', som: 0.0, exp: "Dichiarazione della variabile locale 'SOM' che conterrà il totale cumulato dell'importo.", activeIdx: null },
+            { line: 3, i: '-', som: 0.0, exp: "Dichiarazione del contatore del ciclo 'i'.", activeIdx: null },
+            { line: 4, i: '-', som: 0, exp: "Inizializzazione fondamentale: 'SOM = 0'. L'accumulatore deve partire da zero.", activeIdx: null },
+            
+            // Ciclo i = 0
+            { line: 5, i: 0, som: 0, exp: "Valutazione ciclo: 'i = 0'. Poiché i (0) < a.np (3), entriamo nel corpo del ciclo for.", activeIdx: 0 },
+            { line: 6, i: 0, som: 6.0, exp: "Calcolo: a.PP[0] * a.QP[0] = 3.00 * 2 = 6.00 €.\nNuovo SOM = 0 + 6.00 = 6.00 €.", activeIdx: 0 },
+            
+            // Ciclo i = 1
+            { line: 5, i: 1, som: 6.0, exp: "Incremento ciclo: 'i' diventa 1. Poiché i (1) < a.np (3), continuiamo l'iterazione.", activeIdx: 1 },
+            { line: 6, i: 1, som: 21.0, exp: "Calcolo: a.PP[1] * a.QP[1] = 7.50 * 2 = 15.00 €.\nNuovo SOM = 6.00 + 15.00 = 21.00 €.", activeIdx: 1 },
+            
+            // Ciclo i = 2
+            { line: 5, i: 2, som: 21.0, exp: "Incremento ciclo: 'i' diventa 2. Poiché i (2) < a.np (3), continuiamo l'iterazione.", activeIdx: 2 },
+            { line: 6, i: 2, som: 25.0, exp: "Calcolo: a.PP[2] * a.QP[2] = 4.00 * 1 = 4.00 €.\nNuovo SOM = 21.00 + 4.00 = 25.00 €.", activeIdx: 2 },
+            
+            // Uscita dal ciclo
+            { line: 5, i: 3, som: 25.0, exp: "Incremento ciclo: 'i' diventa 3. Ora la condizione (3 < 3) è FALSA! Il ciclo termina.", activeIdx: null },
+            { line: 8, i: 3, som: 25.0, exp: "Istruzione 'return SOM': La funzione restituisce il valore finale 25.00 € al chiamante.", activeIdx: null, print: "> return SOM (25.00 €) - Esecuzione Completata!" }
+        ];
+
+        let currentSimStep = 0;
+
+        function renderSimulation() {
+            const step = simSteps[currentSimStep];
+
+            // Aggiorna indicatore step
+            document.getElementById('step-indicator').innerText = `Passo ${currentSimStep + 1} / ${simSteps.length}`;
+            
+            // Evidenzia riga di codice
+            for (let l = 1; l <= 9; l++) {
+                const lineEl = document.getElementById(`code-line-${l}`);
+                if (l === step.line) {
+                    lineEl.className = 'px-2 py-1 rounded code-highlight font-bold text-sky-300';
+                } else {
+                    lineEl.className = 'px-2 py-1 rounded transition-colors text-slate-300 opacity-80';
+                }
+            }
+
+            // Aggiorna spiegazione
+            document.getElementById('step-explanation').innerText = step.exp;
+
+            // Aggiorna registro variabili
+            document.getElementById('var-i').innerText = step.i;
+            document.getElementById('var-som').innerText = typeof step.som === 'number' ? step.som.toFixed(2) + ' €' : step.som;
+
+            // Aggiorna tabella memoria vettori
+            const tbody = document.getElementById('sim-table-body');
+            tbody.innerHTML = '';
+
+            simData.products.forEach((prod, index) => {
+                const isActive = (index === step.activeIdx);
+                const tr = document.createElement('tr');
+                tr.className = isActive 
+                    ? 'bg-sky-900/50 text-white font-bold border-l-4 border-sky-400' 
+                    : 'hover:bg-slate-800/40 text-slate-300';
+
+                const subtotal = (prod.price * prod.qty).toFixed(2);
+
+                tr.innerHTML = `
+                    <td class="p-2 border-r border-slate-700/60">${index}</td>
+                    <td class="p-2 border-r border-slate-700/60 text-emerald-300">${prod.name}</td>
+                    <td class="p-2 border-r border-slate-700/60 text-sky-300">${prod.price.toFixed(2)} €</td>
+                    <td class="p-2 border-r border-slate-700/60 text-amber-300">${prod.qty}</td>
+                    <td class="p-2 text-sky-400">${subtotal} €</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // Aggiorna terminale
+            if (step.print) {
+                document.getElementById('sim-terminal').innerText = step.print;
+            }
+
+            // Disabilita/Abilita bottoni
+            document.getElementById('btn-sim-prev').disabled = (currentSimStep === 0);
+            document.getElementById('btn-sim-next').disabled = (currentSimStep === simSteps.length - 1);
+        }
+
+        function simNext() {
+            if (currentSimStep < simSteps.length - 1) {
+                currentSimStep++;
+                renderSimulation();
+            }
+        }
+
+        function simPrev() {
+            if (currentSimStep > 0) {
+                currentSimStep--;
+                renderSimulation();
+            }
+        }
+
+        function simReset() {
+            currentSimStep = 0;
+            renderSimulation();
+        }
+
+        // ================= RISOLUZIONE ESERCIZIO DI CASA (TAB 3) =================
+        const hwStepsData = [
+            {
+                step: 1,
+                title: "Step 1: Dichiarazione e Inizializzazione delle due Fatture",
+                desc: "Nel `main()`, la prima cosa da fare è dichiarare due variabili distinte di tipo `T_FATTURA` per contenere i dati della prima e della seconda fattura.",
+                code: `// Dichiarazione di due strutture Fattura
+T_FATTURA f1, f2;
+
+// Inserimento o popolamento dati per f1 e f2...
+// (es. f1.nf = 101; f1.date.gg = 10; f1.Cogn = "Rossi"; ...)
+`
+            },
+            {
+                step: 2,
+                title: "Step 2: Calcolo dell'Importo Totale di Entrambe le Fatture",
+                desc: "Richiamiamo la funzione `CalcImp()` creata a lezione per ciascuna delle due fatture, salvando i risultati in due variabili `float tot1` e `tot2`.",
+                code: `// Calcolo importi parziali/totali
+float tot1 = CalcImp(f1); // Calcola somma (PP * QP) per la fattura 1
+float tot2 = CalcImp(f2); // Calcola somma (PP * QP) per la fattura 2
+`
+            },
+            {
+                step: 3,
+                title: "Step 3: Confronto con la Struttura di Controllo IF-ELSE",
+                desc: "Valutiamo quale importo è più alto. La traccia chiede di stampare la fattura con l'importo totale maggiore.",
+                code: `if (tot1 > tot2) {
+    // La fattura 1 ha l'importo più alto
+    stampaF(f1);
+} else {
+    // La fattura 2 ha l'importo più alto (o sono uguali)
+    stampaF(f2);
+}`
+            },
+            {
+                step: 4,
+                title: "Step 4: Chiamata alla Funzione stampaF()",
+                desc: "La funzione `stampaF()` si occuperà di formattare e stampare a video tutti i dettagli (Numero, Destinatario, Data annidata e Importo).",
+                code: `// All'interno del ramo IF scelto:
+stampaF(f1); // Stampa f1.nf, f1.Cogn, f1.date.gg/mm/aa e il Totale
+`
+            },
+            {
+                step: 5,
+                title: "Soluzione Completa del Main C++",
+                desc: "Ecco il codice sorgente completo integrato con le funzioni viste nelle foto della lavagna.",
+                code: `#include <iostream>
+#include <string>
+using namespace std;
+
+const int NMAX = 100;
+
+struct T_DATA {
+    int gg, mm, aa;
+};
+
+struct T_FATTURA {
+    int nf;
+    T_DATA date;
+    string Cogn, Nom;
+    string NP[NMAX];
+    float PP[NMAX];
+    int QP[NMAX];
+    int np;
+};
+
+float CalcImp(T_FATTURA a) {
+    float SOM = 0;
+    for(int i = 0; i < a.np; i++) {
+        SOM += (a.PP[i] * a.QP[i]);
+    }
+    return SOM;
+}
+
+void stampaF(T_FATTURA a) {
+    float S = CalcImp(a);
+    cout << "DATI:" << endl;
+    cout << "NUMERO:\\t" << a.nf << endl;
+    cout << "DESTINATARIO:\\t" << a.Cogn << " " << a.Nom << endl;
+    cout << "DATA:\\t" << a.date.gg << "/" << a.date.mm << "/" << a.date.aa << endl;
+    cout << "IMPORTO:\\t" << S << " €" << endl;
+}
+
+int main() {
+    T_FATTURA f1, f2;
+    // ... caricamento dati f1 ed f2 ...
+    
+    if(CalcImp(f1) > CalcImp(f2)) {
+        stampaF(f1);
+    } else {
+        stampaF(f2);
+    }
+    return 0;
+}`
+            }
+        ];
+
+        let currentHwStep = 1;
+
+        function setHwStep(stepNum) {
+            currentHwStep = stepNum;
+            const data = hwStepsData[stepNum - 1];
+
+            document.getElementById('hw-step-title').innerText = data.title;
+            document.getElementById('hw-step-badge').innerText = `Passo ${stepNum} di 5`;
+            document.getElementById('hw-step-desc').innerText = data.desc;
+            document.getElementById('hw-step-code').innerText = data.code;
+
+            // Aggiorna stile bottoni sidebar
+            for (let i = 1; i <= 5; i++) {
+                const btn = document.getElementById(`hw-step-btn-${i}`);
+                if (i === stepNum) {
+                    btn.className = "hw-step-btn w-full text-left p-3 rounded-xl border transition-all flex items-center justify-between bg-slate-800 border-sky-500 text-white shadow";
+                } else {
+                    btn.className = "hw-step-btn w-full text-left p-3 rounded-xl border transition-all flex items-center justify-between bg-slate-800/60 border-slate-700 text-slate-400 hover:text-white";
+                }
+            }
+
+            // Disabilita/Abilita navigazione
+            document.getElementById('btn-hw-prev').disabled = (stepNum === 1);
+            document.getElementById('btn-hw-next').disabled = (stepNum === 5);
+        }
+
+        function nextHwStep() {
+            if (currentHwStep < 5) setHwStep(currentHwStep + 1);
+        }
+
+        function prevHwStep() {
+            if (currentHwStep > 1) setHwStep(currentHwStep - 1);
+        }
+
+        // Workbench Interattivo (Calcolo dinamico e simulazione stampa)
+        function recalculateHomework() {
+            // Dati F1
+            const f1_p0_price = parseFloat(document.getElementById('f1-p0-price').value) || 0;
+            const f1_p0_qty = parseInt(document.getElementById('f1-p0-qty').value) || 0;
+            const f1_p1_price = parseFloat(document.getElementById('f1-p1-price').value) || 0;
+            const f1_p1_qty = parseInt(document.getElementById('f1-p1-qty').value) || 0;
+            const tot1 = (f1_p0_price * f1_p0_qty) + (f1_p1_price * f1_p1_qty);
+
+            // Dati F2
+            const f2_p0_price = parseFloat(document.getElementById('f2-p0-price').value) || 0;
+            const f2_p0_qty = parseInt(document.getElementById('f2-p0-qty').value) || 0;
+            const f2_p1_price = parseFloat(document.getElementById('f2-p1-price').value) || 0;
+            const f2_p1_qty = parseInt(document.getElementById('f2-p1-qty').value) || 0;
+            const tot2 = (f2_p0_price * f2_p0_qty) + (f2_p1_price * f2_p1_qty);
+
+            // Aggiorna Badge Totali
+            document.getElementById('tot-f1-badge').innerText = `Tot: ${tot1.toFixed(2)} €`;
+            document.getElementById('tot-f2-badge').innerText = `Tot: ${tot2.toFixed(2)} €`;
+
+            // Determina la fattura vincitrice
+            const winnerTag = document.getElementById('winner-tag');
+            const outputTerminal = document.getElementById('printed-output');
+
+            let winner, nf, client, gg, mm, aa, tot;
+
+            if (tot1 > tot2) {
+                winnerTag.innerText = "Condizione (tot1 > tot2) VERA -> Stampo Fattura 1";
+                winnerTag.className = "text-xs px-2.5 py-1 rounded font-bold bg-sky-950 text-sky-400 border border-sky-800";
+                
+                nf = document.getElementById('f1-nf').value;
+                client = document.getElementById('f1-client').value;
+                gg = document.getElementById('f1-gg').value;
+                mm = document.getElementById('f1-mm').value;
+                aa = document.getElementById('f1-aa').value;
+                tot = tot1;
+            } else {
+                winnerTag.innerText = "Condizione (tot1 > tot2) FALSA -> Stampo Fattura 2";
+                winnerTag.className = "text-xs px-2.5 py-1 rounded font-bold bg-purple-950 text-purple-300 border border-purple-800";
+                
+                nf = document.getElementById('f2-nf').value;
+                client = document.getElementById('f2-client').value;
+                gg = document.getElementById('f2-gg').value;
+                mm = document.getElementById('f2-mm').value;
+                aa = document.getElementById('f2-aa').value;
+                tot = tot2;
+            }
+
+            // Simula esattamente l'output della funzione stampaF() della Foto 3
+            outputTerminal.innerText = 
+`DATI:
+NUMERO:\t\t${nf}
+DESTINATARIO:\t${client}
+DATA:\t\t${gg}/${mm}/${aa}
+IMPORTO:\t${tot.toFixed(2)} €`;
+        }
+
+        // Inizializzazione al caricamento della pagina
+        window.onload = function() {
+            renderSimulation();
+            setHwStep(1);
+            recalculateHomework();
+        }
+    </script>
+</body>
+</html>
